@@ -228,19 +228,19 @@ student* student::getlink() const
 {
 	return(link);
 }
-	
+
 /*void overall_sorting(studentprt& n, student temp)
 {
         student* cur1 = head;
         student* cur2 = head;
-	
+
 	while(cur1 -> link != nullptr)
 	{
-		
+
 	}
-       for (int i = 0; i <  ; i++) 
+       for (int i = 0; i <  ; i++)
        {
-        for (int j = 0; j <  - 1; j++) 
+        for (int j = 0; j <  - 1; j++)
 	{
             if (cur1-> data < cur2->data)
 	    {
@@ -252,7 +252,7 @@ student* student::getlink() const
         }
          cur2 = head;
          cur1 = head->next;
-         for (int k = 0; k < i; k++) 
+         for (int k = 0; k < i; k++)
 	 {
                 cur1 = cur1->next;
 	 }
@@ -273,12 +273,12 @@ void add_node(studentprt& head, studentprt& tail, student temp)
 		head = newstudent;
 		tail = newstudent;
 	}
-	else
+	else//test
 	{
 		tail -> setlink(newstudent);
-		tail = tail -> getlink(); 
+		tail = tail -> getlink();
 	}
-}  
+}
 
 
 //Constructor for the DomesticStudent class
