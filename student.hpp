@@ -55,13 +55,13 @@ public:
   //Linked list specific functions
   friend void add_node(student*, student*, student*);
   /*The student in the parameter points to nullptr*/
-
-  void merge(student*);
+  virtual void print();
+  friend void search_ID(student*, int);
+  void merge(student*, student*);
   /*This function takes the head pointer of a different student type list and merges it with the called list
     by using the add_node function to each node one at a time :)
     PS: call the headptr of the list you want to merge to :)
   */
-  // Friend Functions
   friend void swapPositions(student*, student*);
   /*Input: Two student pointers */
   friend string compareOverall(student*, student*);
@@ -124,6 +124,7 @@ public:
         //   Output: Causes the pointed array to be sorted in alphabetical order of the lname member variable */
         friend ostream& operator<<(ostream& outs, const DomesticStudent& dstu);
         //overload the << (output) operator to allow a pre-set format of outputing the member variables of a DomesticStudent object to a ostream
+        virtual void print();
 private:
         string province;
 };
@@ -173,6 +174,7 @@ public:
         //   Output: Causes the pointed array to be sorted in alphabetical order of the lname member variable */
         friend ostream& operator<<(ostream& outs, const InternationalStudent& istu);
         //overload the << (output) operator to allow a pre-set format of outputing the member variables of a InternationalStudent object to a ostream
+        virtual void print();
 private:
         string country;
         ToeflScore TOEFL;

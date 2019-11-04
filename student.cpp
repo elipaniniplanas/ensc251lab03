@@ -129,7 +129,7 @@ int ToeflScore::gettotalscore() const
 
 
 //Student constructors
-student::student(string first, string last, float cgpa, int score, int id) : link{nullptr}
+student::student(string first, string last, float cgpa, int score, int id)
 {
         //Error checking, making sure that the proper values are in range
         if(cgpa > 4.3 || cgpa < 0)
@@ -169,14 +169,16 @@ student::student(string first, string last, float cgpa, int score, int id) : lin
         fname = first;
         lname = last;
         ID = id;
+        link = NULL;
 }
-student::student() : link{nullptr}
+student::student()
 {
         fname = " ";
         lname = " ";
         CGPA = 0.0;
         SCORE = 0;
         ID = 0;
+        link = NULL;
 }
 //Below are the mutator funtions for the Student class
 void student::setfname(string first)
@@ -244,37 +246,94 @@ student* student::getlink() const
 {
 	return(link);
 }
-
-/*void overall_sorting(studentptr& n, student temp)
+//Comparing functions (friend functions)
+string compareResearchScore(studentptr left, studentptr right)
 {
-        student* cur1 = head;
-        student* cur2 = head;
-
-	while(cur1 -> link != nullptr)
-	{
-
-	}
-       for (int i = 0; i <  ; i++)
-       {
-        for (int j = 0; j <  - 1; j++)
-	{
-            if (cur1-> data < cur2->data)
-	    {
-                int temp = cur1->data;
-                cur1->data = cur2->data;
-                cur2->data = temp;
-            }
-            cur2 = cur2->next;
-        }
-         cur2 = head;
-         cur1 = head->next;
-         for (int k = 0; k < i; k++)
-	 {
-                cur1 = cur1->next;
-	 }
-       }
+  if(left->SCORE < right->SCORE)
+  {
+    return "lesser";
+  }
+  else if(left->SCORE > right->SCORE)
+  {
+    return "greater";
+  }
+  else
+  {
+    return "equal";
+  }
 }
-*/
+string compareCGPA(studentptr left, studentptr right)
+{
+  if(left->CGPA < right->CGPA)
+  {
+    return "lesser";
+  }
+  else if (left->CGPA > right->CGPA)
+  {
+    return "greater";
+  }
+  else
+  {
+    return "equal";
+  }
+}
+string compareFirstName(studentptr left, studentptr right)
+{
+  if (left->fname < right->fname)
+  {
+    return "less";
+  }
+  else if (left->fname > right->fname)
+  {
+    return "greater";
+  }
+  else
+  {
+    return "equal";
+  }
+}
+string compareLastName(studentptr left, studentptr right)
+{
+  if (left->lname < right->lname)
+  {
+    return "less";
+  }
+  else if (left->lname > right->lname)
+  {
+    return "greater";
+  }
+  else
+  {
+    return "equal";
+  }
+}
+string compareOverall(studentptr left, studentptr right)//left is <greater/equal/lesser> than right
+{
+  if(compareResearchScore(left, right) == "greater")
+  {
+    return "greater";
+  }
+  else if(compareResearchScore(left, right) == "equal")
+  {
+    if(compareCGPA(left, right) == "greater")
+    {
+      return "greater";
+    }
+    else if(compareCGPA(left, right) == "equal")
+    {
+      return "equal";
+    }
+    else
+    {
+      return "lesser";
+    }
+  }
+  else
+  {
+    return "lesser";
+  }
+}
+
 void add_node(studentptr head, studentptr tail, studentptr newstudent)
 {
   studentptr temp;
@@ -286,33 +345,174 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
 	else
 	{
     temp = head;
-    while ((compareOverall(*temp, *newstudent) == "greater") && (temp->link != nullptr))
+    while ((compareOverall(temp, newstudent) == "greater") && (temp->link))
     {
       temp = temp->link;
     }
     if(tail == temp)
     {
-      tail = newstudent;
+      newstudent->link=temp->link;
+      temp->link=newstudent;
+      tail = newstudent;//make the tail point to the newstudent node because it is the "lowest"
     }
+    else if(head == temp)
+    {
+      newstudent->link=temp;
+      head = newstudent;
+    }
+    else
+    {
     newstudent->link=temp->link;
     temp->link=newstudent;
+    }
 	}
 }
 
-linklist linklist::merge(const linklist &l2) const {
-    linklist l3;
-    node *nodes[2]{start, l2.start};
-
-    while (nodes[0] && nodes[1]) {
-        size_t index = nodes[0]->data < nodes[1]->data ? 0 : 1;
-        l3.append(nodes[index]->data);
-        nodes[index] = nodes[index]->link;
+void search_ID(studentptr head, int id)
+{
+  bool found = false;
+  studentptr searched;
+  searched = head;
+  while (searched)
+  {
+    if (seached->ID == id))
+    {
+      searched->print();
+      found = true;
     }
-    l3 += nodes[0];   // one of the lists is empty at this point
-    l3 += nodes[1];
-    return l3;
+    searched=searched->link;
+  }
+  if(!found)
+  {
+    cout << "Can't find any student with this ID" << endl;
+  }
 }
-
+void search_CGPA(studentptr head, float cgpa)
+{
+  bool found = false;
+  studentptr searched;
+  searched = head;
+  while (searched)
+  {
+    if (seached->CGPA == cgpa))
+    {
+      searched->print();
+      found = true;
+    }
+    searched=searched->link;
+  }
+  if(!found)
+  {
+    cout << "Can't find any student with this CGPA" << endl;
+  }
+}
+void search_score(studentptr head, int score)
+{
+  bool found = false;
+  studentptr searched;
+  searched = head;
+  while (searched)
+  {
+    if (seached->SCORE == score))
+    {
+      searched->print();
+      found = true;
+    }
+    searched=searched->link;
+  }
+  if(!found)
+  {
+    cout << "Can't find any student with this research score" << endl;
+  }
+}
+void search_name(studentptr head, string fn, string ln)
+{
+  bool found = false;
+  studentptr searched; //initialize searched
+  searched = head;
+  while (searched)
+  {
+    if ((searched->fname == fn) && (current->lname == ln))
+    {
+      searched->print();
+      found = true;
+    }
+    searched = searched->link;
+  }
+  if(!found)
+  {
+    cout << "Can't find any student with this name" << endl;
+  }
+}
+void insertD(studentptr head, studentptr tail, int* id)
+{
+  string fn, ln, province;
+  float cgpa;
+  int researchscore;
+  cout << "Please enter the first name of the student to be inserted: ";
+  cin >> fn;
+  cout << "Please enter the last name of the student to be inserted: ";
+  cin >> ln;
+  cout << "Please enter the research score of the student to be inserted: ";
+  cin >> reseachscore;
+  cout << "Please enter the CGPA of the student to be inserted: ";
+  cin >> cgpa;
+  cout << "Please enter the Province the student used to live in: ";
+  cin >> province;
+  studentptr DtempPtr = new DomesticStudent(fn, ln, cgpa, researchscore, *id, province);
+  add_node(head, tail, DtempPtr);
+  *id++;
+  head->print();
+}
+void delete_node(studentptr head, studentptr tail, string fn, string ln)
+{
+  bool deleted = false;
+  studentptr prior, searched;
+  while ((head->fname == fn) && (head->lname == ln) && head)
+  {
+    studentptr tempPtr = head;
+    head = head->link;
+    delete tempPtr;
+    deleted = true;
+  }
+  prior = head;
+  while (prior)
+  {
+    searched = prior->link;
+    if((searched->fname == fn) && (searched->lname == ln))
+    {
+      studentptr tempPtr = searched;
+      prior->link = searched->link;
+      delete tempPtr;
+      deleted = true;
+    }
+    prior = prior->link;
+  }
+  if(!found)
+  {
+    cout << "Can't find any student with this name" << endl;
+  }
+}
+void delete_tips(studentptr head, studentptr tail)
+{
+  if(!head)
+  {
+    cout<<"List is empty"<<endl;
+  }
+  else if(!(head->link))
+  {
+    studentptr tempPtr = head;
+    head = head->link;
+    tail = tail->link;
+    delete tempPtr;
+  }
+  else
+  {
+    studentptr tempPtr = head;
+    head = head->link;
+    delete tempPtr;
+  }
+}
 studentptr student::merge(const studentptr &otherhead) const
 {
   studentptr newhead = new student;
@@ -322,7 +522,7 @@ studentptr student::merge(const studentptr &otherhead) const
   studentptr Ihead;
   while(1)
   {
-    if (this == nullptr)
+    if (this == NULL)
     {
       newtail->setlink(
     }
@@ -418,6 +618,34 @@ int InternationalStudent::gettotal() const
 string InternationalStudent::getcountry() const
 {
         return(country);
+}
+
+void insertI(studentptr head, studentptr tail, int* id)
+{
+  string fn, ln, country;
+  float cgpa;
+  int researchscore, read, write, listen, speak;
+  cout << "Please enter the first name of the student to be inserted: ";
+  cin >> fn;
+  cout << "Please enter the last name of the student to be inserted: ";
+  cin >> ln;
+  cout << "Please enter the research score of the student to be inserted: ";
+  cin >> reseachscore;
+  cout << "Please enter the CGPA of the student to be inserted: ";
+  cin >> cgpa;
+  cout << "Please enter the student's country of origin: ";
+  cin >> country;
+  cout << "Please enter the Reading TOEFL score of the student to be inserted: ";
+  cin >> read;
+  cout << "Please enter the Writing TOEFL score of the student to be inserted: ";
+  cin >> write;
+  cout << "Please enter the Listening TOEFL score of the student to be inserted: ";
+  cin >> listen;
+  cout << "Please enter the Speaking TOEFL score of the student to be inserted: ";
+  cin >> speak;
+  studentptr ItempPtr = new InternationalStudent(fn, ln, cgpa, researchscore, *id, country, read, write, listen, speak);
+  add_node(head, tail, ItempPtr);
+  *id++;
 }
 //Overloaded << operator for Domesticstudents
 ostream& operator<<(ostream& outs, const DomesticStudent& dstu)
