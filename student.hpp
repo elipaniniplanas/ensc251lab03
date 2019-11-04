@@ -32,7 +32,6 @@ private:
         int totalscore;
 };
 
-//node
 class student
 {
 public:
@@ -52,17 +51,25 @@ public:
   float getCGPA() const;
   int getscore() const;
   int getID() const;
-  student* getlink() const;
+  studentptr getlink() const;
+  //Linked list specific functions
+  friend void add_node(student*, student*, student*);
+  /*The student in the parameter points to nullptr*/
+
+  void merge(student*);
+  /*This function takes the head pointer of a different student type list and merges it with the called list
+    by using the add_node function to each node one at a time :)
+    PS: call the headptr of the list you want to merge to :)
+  */
   // Friend Functions
   friend void swapPositions(student*, student*);
-  /*Input: Two studnet pointers
-    Output:
-
-  */
-  friend string compareCGPA(student, student);
+  /*Input: Two student pointers */
+  friend string compareOverall(student*, student*);
+  /*Takes two students and returns the resuslt of their overall sort*/
+  friend string compareCGPA(student*, student*);
   /*Input: two student objects
     Output: a string saying if the first object's CGPA member variable is greater, equal, or less than the second object's*/
-  friend string compareResearchScore(student overallscore1, student overallscore2);
+  friend string compareResearchScore(student, student);
   /*Input: two student objects
     Output: a string saying if the first object's ResearchScore member variable is greater, equal, or less than the second object's*/
   friend string compareFirstName(student, student);
@@ -80,7 +87,7 @@ private:
         int ID;
         student* link;
 };
-typedef student* studentprt;
+typedef student* studentptr;
 
 
 class DomesticStudent : public student
@@ -120,6 +127,7 @@ public:
 private:
         string province;
 };
+typedef DomesticStudent* DomesticStudentPtr
 
 
 class InternationalStudent : public student
@@ -169,7 +177,4 @@ private:
         string country;
         ToeflScore TOEFL;
 };
-
-
-
 #endif

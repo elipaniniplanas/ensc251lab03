@@ -14,12 +14,13 @@ int main(){
   string line; //Used to retrieve a line in the files
   string userInStu; // User input
   string userInComp; // User input
-  student* Dhead; //Head pointer for the DomesticStudent linked list
-  student* Dtail; //Tail pointer for the DomesticStudent linked list
-  student* DtempPtr; //Temporary pointer for the DomesticStudent linked list
-  student* Ihead; //Head pointer for the InternationalStudent linked list
-  student* Itail; //Tail pointer for the InternationalStudent linked list
-  student* ItempPtr; //Temporary pointer for the InternationalStudent linked list
+  studentptr Dhead; //Head pointer for the DomesticStudent linked list
+  studentptr Dtail; //Tail pointer for the DomesticStudent linked list
+  studentptr Ihead; //Head pointer for the InternationalStudent linked list
+  studentptr Itail; //Tail pointer for the InternationalStudent linked list
+  studentptr ItempPtr; //Temporary pointer for the InternationalStudent linked list
+  studentptr AllHead;
+  studentptr AllTail;
 
   //Read the domestic-stu.txt file and exit if failed
   ifstream domesticFile("domestic-stu.txt");
@@ -42,7 +43,6 @@ int main(){
     string firstName, lastName, province, s_cgpa, s_researchScore;
     float cgpa;
     int researchScore;
-
     getline(ss, firstName, ',');
     getline(ss, lastName, ',');
     getline(ss, province, ',');
@@ -50,10 +50,9 @@ int main(){
     cgpa = atof(s_cgpa.c_str());
     getline(ss, s_researchScore, ',');
     researchScore = atoi(s_researchScore.c_str());
-
     // Set all data to a DomesticStudent node
-
-
+    studentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count);
+    Dhead->add_node(DtempPtr);
     counter1++;
     Dstu_count++;
     ID_count++;
@@ -94,7 +93,7 @@ int main(){
     getline(ss, s_write, ',');
     write = atoi(s_write.c_str());
     // Set all data to the Istudent object with mutator functions
- 
+
     //Generate a new ID and prepare to the next iteration of the loop
     counter2++;
     Istu_count++;
@@ -102,8 +101,8 @@ int main(){
   }
   //close your file
   internationalFile.close();
-	
-	
+
+
   retry:
   cout << "What would you like to sort:\nDomestic students; type 'D' or 'd'\nInternational students; type 'I' or 'i'\nINPUT: "; // prompt for user input
   cin >> userInStu;
@@ -118,12 +117,12 @@ int main(){
     //Sort by CGPA
     if ((userInComp == "c")||(userInComp == "C"))
     {
-
+      func(head, stuff);
     }
     // Sort by research score
     else if ((userInComp == "r")||(userInComp == "R"))
     {
-      
+
     }
     // Sort by first name
     else if ((userInComp == "f")||(userInComp == "F"))
@@ -132,11 +131,11 @@ int main(){
     // Sort by last name
     else if ((userInComp == "l")||(userInComp == "L"))
     {
-      
+
     }
     else if ((userInComp == "o")||(userInComp == "O"))
     {
-      
+
     }
     else
     {
@@ -153,26 +152,26 @@ int main(){
     // Sort by CGPA
     if ((userInComp == "c")||(userInComp == "C"))
     {
-      
+
     }
     // Sort by reseach score
     else if ((userInComp == "r")||(userInComp == "R"))
     {
-      
+
     }
     // Sort by first name
     else if ((userInComp == "f")||(userInComp == "F"))
     {
-      
+
     }
     // Sort by last name
     else if ((userInComp == "l")||(userInComp == "L"))
     {
-      
+
     }
     else if ((userInComp == "o")||(userInComp == "O"))
     {
-      
+
     }
     else
     {

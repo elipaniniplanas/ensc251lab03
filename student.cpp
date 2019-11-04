@@ -129,7 +129,7 @@ int ToeflScore::gettotalscore() const
 
 
 //Student constructors
-student::student(string first, string last, float cgpa, int score, int id)
+student::student(string first, string last, float cgpa, int score, int id) : link{nullptr}
 {
         //Error checking, making sure that the proper values are in range
         if(cgpa > 4.3 || cgpa < 0)
@@ -150,11 +150,27 @@ student::student(string first, string last, float cgpa, int score, int id)
         {
                 SCORE = score;
         }
+        if((fname.at(0)>=97) && (fname.at(0)<=122))
+        {
+          fname.at(0) = fname.at(0)-32;
+        }
+        else if((fname.at(0)<65) || (fname.at(0)>90))
+        {
+          cout<<"The name entered contains invaled symbols";
+        }
+        if((lname.at(0)>=97) && (lname.at(0)<=122))
+        {
+          lname.at(0) = lname.at(0)-32;
+        }
+        else if((lname.at(0)<65) || (lname.at(0)>90))
+        {
+          cout<<"The name entered contains invaled symbols";
+        }
         fname = first;
         lname = last;
         ID = id;
 }
-student::student()
+student::student() : link{nullptr}
 {
         fname = " ";
         lname = " ";
@@ -229,7 +245,7 @@ student* student::getlink() const
 	return(link);
 }
 
-/*void overall_sorting(studentprt& n, student temp)
+/*void overall_sorting(studentptr& n, student temp)
 {
         student* cur1 = head;
         student* cur2 = head;
@@ -259,25 +275,70 @@ student* student::getlink() const
        }
 }
 */
-void add_node(studentprt& head, studentprt& tail, student temp)
+void add_node(studentptr head, studentptr tail, studentptr newstudent)
 {
-	studentprt newstudent = new student;
-	newstudent -> setlink(temp.getlink());
-	newstudent -> setfname(temp.getfname());
-	newstudent -> setlname(temp.getlname());
-	newstudent -> setCGPA(temp.getCGPA());
-	newstudent -> setscore(temp.getscore());
-	newstudent -> setID(temp.getID());
-	if(head == NULL)
+  studentptr temp;
+	if(!head)//checks if the list is empty
 	{
 		head = newstudent;
-		tail = newstudent;
+    tail = newstudent;
 	}
-	else//test
+	else
 	{
-		tail -> setlink(newstudent);
-		tail = tail -> getlink();
+    temp = head;
+    while ((compareOverall(*temp, *newstudent) == "greater") && (temp->link != nullptr))
+    {
+      temp = temp->link;
+    }
+    temp
 	}
+}
+
+linklist linklist::merge(const linklist &l2) const {
+    linklist l3;
+    node *nodes[2]{start, l2.start};
+
+    while (nodes[0] && nodes[1]) {
+        size_t index = nodes[0]->data < nodes[1]->data ? 0 : 1;
+        l3.append(nodes[index]->data);
+        nodes[index] = nodes[index]->link;
+    }
+    l3 += nodes[0];   // one of the lists is empty at this point
+    l3 += nodes[1];
+    return l3;
+}
+
+studentptr student::merge(const studentptr &otherhead) const
+{
+  studentptr newhead = new student;
+  studentptr newtail;
+  newtail = newhead;
+  studentptr Dhead = this;
+  studentptr Ihead;
+  while(1)
+  {
+    if (this == nullptr)
+    {
+      newtail->setlink(
+    }
+  }
+
+
+
+
+  newhead->setlink(link);
+  newhead->setfname(fname);
+  newhead->setlname(lname);
+  newhead->setCGPA(CGPA);
+  newhead->setscore(score);
+  newhead->setID(ID);
+  studentptr temp = new student;
+  *temp = *otherhead
+  while(temp->link != NULL)
+  {
+    newhead->add_node(*temp);
+  }
+  return newhead;
 }
 
 
