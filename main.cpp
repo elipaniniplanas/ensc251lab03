@@ -52,7 +52,7 @@ int main(){
     researchScore = atoi(s_researchScore.c_str());
     // Set all data to a DomesticStudent node
     studentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count);
-    Dhead->add_node(DtempPtr);
+    add_node(Dhead, Dtail, DtempPtr);
     counter1++;
     Dstu_count++;
     ID_count++;
@@ -117,7 +117,7 @@ int main(){
     //Sort by CGPA
     if ((userInComp == "c")||(userInComp == "C"))
     {
-      func(head, stuff);
+      
     }
     // Sort by research score
     else if ((userInComp == "r")||(userInComp == "R"))

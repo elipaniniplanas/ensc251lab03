@@ -290,7 +290,12 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
     {
       temp = temp->link;
     }
-    temp
+    if(tail == temp)
+    {
+      tail = newstudent;
+    }
+    newstudent->link=temp->link;
+    temp->link=newstudent;
 	}
 }
 
