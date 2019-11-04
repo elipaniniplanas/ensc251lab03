@@ -51,7 +51,7 @@ int main(){
     getline(ss, s_researchScore, ',');
     researchScore = atoi(s_researchScore.c_str());
     // Set all data to a DomesticStudent node
-    studentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count);
+    studentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count, province);
     add_node(Dhead, Dtail, DtempPtr);
     counter1++;
     Dstu_count++;
@@ -93,7 +93,8 @@ int main(){
     getline(ss, s_write, ',');
     write = atoi(s_write.c_str());
     // Set all data to the Istudent object with mutator functions
-
+    studentptr ItempPtr = new InternationalStudent(firstName, lastName, cgpa, researchScore, ID_count, country, read, write, listen, speak);
+    add_node(Ihead, Itail, ItempPtr);
     //Generate a new ID and prepare to the next iteration of the loop
     counter2++;
     Istu_count++;
@@ -117,7 +118,7 @@ int main(){
     //Sort by CGPA
     if ((userInComp == "c")||(userInComp == "C"))
     {
-      
+
     }
     // Sort by research score
     else if ((userInComp == "r")||(userInComp == "R"))

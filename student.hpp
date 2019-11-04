@@ -51,7 +51,7 @@ public:
   float getCGPA() const;
   int getscore() const;
   int getID() const;
-  studentptr getlink() const;
+  student* getlink() const;
   //Linked list specific functions
   friend void add_node(student*, student*, student*);
   /*The student in the parameter points to nullptr*/
@@ -127,7 +127,7 @@ public:
 private:
         string province;
 };
-typedef DomesticStudent* DomesticStudentPtr
+typedef DomesticStudent* DomesticStudentptr;
 
 
 class InternationalStudent : public student
@@ -177,4 +177,5 @@ private:
         string country;
         ToeflScore TOEFL;
 };
+typedef InternationalStudent* InternationalStudentptr
 #endif
