@@ -249,11 +249,11 @@ student* student::getlink() const
 //Comparing functions (friend functions)
 string compareResearchScore(studentptr left, studentptr right)
 {
-  if(left->SCORE < right->SCORE)
+  if(left->getscore() < right->getscore())
   {
     return "lesser";
   }
-  else if(left->SCORE > right->SCORE)
+  else if(left->getscore() > right->getscore())
   {
     return "greater";
   }
@@ -279,11 +279,11 @@ string compareCGPA(studentptr left, studentptr right)
 }
 string compareFirstName(studentptr left, studentptr right)
 {
-  if (left->fname < right->fname)
+  if (left->getfname() < right->getfname())
   {
     return "less";
   }
-  else if (left->fname > right->fname)
+  else if (left->getfname() > right->getfname())
   {
     return "greater";
   }
@@ -294,11 +294,11 @@ string compareFirstName(studentptr left, studentptr right)
 }
 string compareLastName(studentptr left, studentptr right)
 {
-  if (left->lname < right->lname)
+  if (left->getlname() < right->getlname())
   {
     return "less";
   }
-  else if (left->lname > right->lname)
+  else if (left->getlname() > right->getlname())
   {
     return "greater";
   }
@@ -345,25 +345,25 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
 	else
 	{
     temp = head;
-    while ((compareOverall(temp, newstudent) == "greater") && (temp->link))
+    while ((compareOverall(temp, newstudent) == "greater") && (temp->getlink()))
     {
-      temp = temp->link;
+      temp = temp->getlink();
     }
     if(tail == temp)
     {
-      newstudent->link=temp->link;
-      temp->link=newstudent;
+      newstudent->setlink(temp->getlink());
+      temp->setlink(newstudent);
       tail = newstudent;//make the tail point to the newstudent node because it is the "lowest"
     }
     else if(head == temp)
     {
-      newstudent->link=temp;
+      newstudent->setlink(temp);
       head = newstudent;
     }
     else
     {
-    newstudent->link=temp->link;
-    temp->link=newstudent;
+    newstudent->setlink(temp->getlink());
+    temp->setlink(newstudent);
     }
 	}
 }
@@ -375,12 +375,12 @@ void search_ID(studentptr head, int id)
   searched = head;
   while (searched)
   {
-    if (seached->ID == id))
+    if (searched->getID() == id))
     {
       searched->print();
       found = true;
     }
-    searched=searched->link;
+    searched=searched->getlink();
   }
   if(!found)
   {
@@ -394,12 +394,12 @@ void search_CGPA(studentptr head, float cgpa)
   searched = head;
   while (searched)
   {
-    if (seached->CGPA == cgpa))
+    if (searched->CGPA == cgpa))
     {
       searched->print();
       found = true;
     }
-    searched=searched->link;
+    searched=searched->getlink();
   }
   if(!found)
   {
@@ -413,12 +413,12 @@ void search_score(studentptr head, int score)
   searched = head;
   while (searched)
   {
-    if (seached->SCORE == score))
+    if (searched->getscore() == score))
     {
       searched->print();
       found = true;
     }
-    searched=searched->link;
+    searched=searched->getlink();
   }
   if(!found)
   {
@@ -432,12 +432,12 @@ void search_name(studentptr head, string fn, string ln)
   searched = head;
   while (searched)
   {
-    if ((searched->fname == fn) && (current->lname == ln))
+    if ((searched->getfname() == fn) && (searched->getlname() == ln))
     {
       searched->print();
       found = true;
     }
-    searched = searched->link;
+    searched = searched->getlink();
   }
   if(!found)
   {
@@ -454,7 +454,7 @@ void insertD(studentptr head, studentptr tail, int* id)
   cout << "Please enter the last name of the student to be inserted: ";
   cin >> ln;
   cout << "Please enter the research score of the student to be inserted: ";
-  cin >> reseachscore;
+  cin >> researchscore;
   cout << "Please enter the CGPA of the student to be inserted: ";
   cin >> cgpa;
   cout << "Please enter the Province the student used to live in: ";
@@ -468,27 +468,27 @@ void delete_node(studentptr head, studentptr tail, string fn, string ln)
 {
   bool deleted = false;
   studentptr prior, searched;
-  while ((head->fname == fn) && (head->lname == ln) && head)
+  while ((head->getfname() == fn) && (head->getlname() == ln) && head)
   {
     studentptr tempPtr = head;
-    head = head->link;
+    head = head->getlink();
     delete tempPtr;
     deleted = true;
   }
   prior = head;
   while (prior)
   {
-    searched = prior->link;
-    if((searched->fname == fn) && (searched->lname == ln))
+    searched = prior->getlink();
+    if((searched->getfname() == fn) && (searched->getlname() == ln))
     {
       studentptr tempPtr = searched;
-      prior->link = searched->link;
+      prior->setlink(searched->getlink());
       delete tempPtr;
       deleted = true;
     }
-    prior = prior->link;
+    prior = prior->getlink();
   }
-  if(!found)
+  if(!deleted)
   {
     cout << "Can't find any student with this name" << endl;
   }
@@ -499,17 +499,17 @@ void delete_tips(studentptr head, studentptr tail)
   {
     cout<<"List is empty"<<endl;
   }
-  else if(!(head->link))
+  else if(!(head->getlink()))
   {
     studentptr tempPtr = head;
-    head = head->link;
-    tail = tail->link;
+    head = head->getlink();
+    tail = tail->getlink();
     delete tempPtr;
   }
   else
   {
     studentptr tempPtr = head;
-    head = head->link;
+    head = head->getlink();
     delete tempPtr;
   }
 }
@@ -539,7 +539,7 @@ studentptr student::merge(const studentptr &otherhead) const
   newhead->setID(ID);
   studentptr temp = new student;
   *temp = *otherhead
-  while(temp->link != NULL)
+  while(temp->getlink() != NULL)
   {
     newhead->add_node(*temp);
   }
@@ -630,7 +630,7 @@ void insertI(studentptr head, studentptr tail, int* id)
   cout << "Please enter the last name of the student to be inserted: ";
   cin >> ln;
   cout << "Please enter the research score of the student to be inserted: ";
-  cin >> reseachscore;
+  cin >> researchscore;
   cout << "Please enter the CGPA of the student to be inserted: ";
   cin >> cgpa;
   cout << "Please enter the student's country of origin: ";
