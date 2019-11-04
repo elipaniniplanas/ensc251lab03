@@ -177,5 +177,5 @@ private:
         string country;
         ToeflScore TOEFL;
 };
-typedef InternationalStudent* InternationalStudentptr
+typedef InternationalStudent* InternationalStudentptr;
 #endif
