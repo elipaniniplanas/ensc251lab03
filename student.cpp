@@ -370,7 +370,7 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
   studentptr temp;
   if(newstudent->checkTOEFL())
   {
-    return
+    return;
   }
 	if(!head)//checks if the list is empty
 	{
@@ -429,7 +429,7 @@ void search_CGPA(studentptr head, float cgpa)
   searched = head;
   while (searched)
   {
-    if (searched->getCGPA() == cgpa))
+    if (searched->getCGPA() == cgpa)
     {
       searched->print();
       found = true;
@@ -448,7 +448,7 @@ void search_score(studentptr head, int score)
   searched = head;
   while (searched)
   {
-    if (searched->getscore() == score))
+    if (searched->getscore() == score)
     {
       searched->print();
       found = true;
@@ -552,6 +552,7 @@ void sortResearchscore(studentptr head, studentptr tail)
 {
   studentptr newhead;
   studentptr newtail;
+  studentptr temp;
   while(!head)
   {
     if(!newhead)//checks if the list is empty
@@ -583,7 +584,7 @@ void sortResearchscore(studentptr head, studentptr tail)
       temp->setlink(head);
       }
     }
-    head = head.getlink();
+    head = head->getlink();
   }
 head = newhead;
 tail = newtail;
@@ -592,6 +593,7 @@ void sortCGPA(studentptr head, studentptr tail)
 {
   studentptr newhead;
   studentptr newtail;
+  studentptr temp;
   while(!head)
   {
     if(!newhead)//checks if the list is empty
@@ -623,7 +625,7 @@ void sortCGPA(studentptr head, studentptr tail)
       temp->setlink(head);
       }
     }
-    head = head.getlink();
+    head = head->getlink();
   }
 head = newhead;
 tail = newtail;
@@ -632,6 +634,7 @@ void sortFirstname(studentptr head, studentptr tail)
 {
   studentptr newhead;
   studentptr newtail;
+  studentptr temp;
   while(!head)
   {
     if(!newhead)//checks if the list is empty
@@ -663,7 +666,7 @@ void sortFirstname(studentptr head, studentptr tail)
       temp->setlink(head);
       }
     }
-    head = head.getlink();
+    head = head->getlink();
   }
 head = newhead;
 tail = newtail;
@@ -672,6 +675,7 @@ void sortLastname(studentptr head, studentptr tail)
 {
   studentptr newhead;
   studentptr newtail;
+  studentptr temp;
   while(!head)
   {
     if(!newhead)//checks if the list is empty
@@ -703,7 +707,7 @@ void sortLastname(studentptr head, studentptr tail)
       temp->setlink(head);
       }
     }
-    head = head.getlink();
+    head = head->getlink();
   }
 head = newhead;
 tail = newtail;
@@ -712,6 +716,7 @@ void sortOverall(studentptr head, studentptr tail)
 {
   studentptr newhead;
   studentptr newtail;
+  studentptr temp;
   while(!head)
   {
     if(!newhead)//checks if the list is empty
@@ -743,47 +748,10 @@ void sortOverall(studentptr head, studentptr tail)
       temp->setlink(head);
       }
     }
-    head = head.getlink();
+    head = head->getlink();
   }
 head = newhead;
 tail = newtail;
-}
-void domesticOverallSort(DomesticStudent *arr, int n)
-{
-  int i, j, k;
-  bool disorganized;
-  for (i = 0; i < n-1; i++)
-  {
-    disorganized = false;
-    for (j = 0; j < n-i-1; j++)
-    {
-      if (compareResearchScore(arr[j], arr[j+1]) == "less")
-      {
-        Dswap(&arr[j], &arr[j+1]);
-        disorganized = true;
-      }
-      else if (compareResearchScore(arr[j], arr[j+1]) == "equal")
-      {
-        if (compareCGPA(arr[j], arr[j+1]) == "less")
-        {
-          Dswap(&arr[j], &arr[j+1]);
-          disorganized = true;
-        }
-        else if (compareCGPA(arr[j], arr[j+1]) == "equal")
-        {
-          if (compareProvince(arr[j], arr[j+1]) == "greater")
-          {
-            Dswap(&arr[j], &arr[j+1]);
-            disorganized = true;
-          }
-        }
-      }
-    }
-    if (!disorganized)
-    {
-      break;
-    }
-  }
 }
 studentptr merge(const studentptr &domestic, const studentptr &internationalhead, const studentptr &internationaltail, studentptr mergedhead, studentptr mergedtail)
 {
@@ -929,11 +897,11 @@ bool InternationalStudent::checkTOEFL() const
     return false;
   }
 }
-bool InternationalStudent::isDom()
+bool InternationalStudent::isDom() const
 {
   return false;
 }
-bool InternationalStudent::isInt()
+bool InternationalStudent::isInt() const
 {
   return true;
 }
