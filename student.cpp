@@ -431,6 +431,8 @@ void search_CGPA(studentptr head, float cgpa)
   searched = head;
   while (searched)
   {
+    cout<<searched->getCGPA()<<endl;
+    cout<<"inside while loop of cgpa search"<< endl;
     if (searched->getCGPA() == cgpa)
     {
       searched->print();
