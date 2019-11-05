@@ -602,6 +602,12 @@ void sortCGPA(studentptr head, studentptr tail)
       }
     head = head->getlink();
   }
+  temp = head;
+  while(temp)
+  {
+    temp->print();
+    temp = temp->getlink();
+  }
 }
 void sortFirstname(studentptr head, studentptr tail)
 {
