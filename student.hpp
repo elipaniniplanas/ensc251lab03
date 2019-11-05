@@ -83,6 +83,7 @@ public:
 
   friend void sortGPA(student*, student*);
   friend void merge(student*, student*, student*, student*, student*);
+  friend void threshold(student*, float, int);
 private:
         string fname;
         string lname;

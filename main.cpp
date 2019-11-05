@@ -136,21 +136,21 @@ int main(){
         {
           cout << "Enter the CGPA to be searched for: ";
           cin >> gpa;
-          search_CGPA(Dhead, Dtail, gpa);
+          search_CGPA(Dhead, gpa);
         }
         //Search by research score
         else if ((userInSub == "r")||(userInSub == "R"))
         {
           cout << "Enter the research score to be searched for: ";
           cin >> rscore;
-          search_score(Dhead, Dtail, rscore);
+          search_score(Dhead, rscore);
         }
         //Search by ID
         else if ((userInSub == "i")||(userInSub == "I"))
         {
           cout << "Enter the ID to be searched for: ";
           cin >> eyedee;
-          search_ID(Dhead, Dtail, eyedee);
+          search_ID(Dhead, eyedee);
         }
         // Search by name
         else if ((userInSub == "n")||(userInSub == "N"))
@@ -159,7 +159,7 @@ int main(){
           cin >> firstname;
           cout << "Enter the last name to be searched for: ";
           cin >> lastname;
-          search_name(Dhead, Dtail, firstname, lastname);
+          search_name(Dhead, firstname, lastname);
         }
         else
         {
@@ -206,7 +206,7 @@ int main(){
         }
       }
       //Linked List stuff
-      else if ((userInComp == "l")||(userInComp == "L"))
+      else if ((userInType == "l")||(userInType == "L"))
       {
         tryagainList: //gateway #1 of loop for user input 2nd error
         cout << "Would you like to:\nInsert a student; type 'A' or 'a'\nDelete the top and bottom nodes; type 'D' or 'd'\nDelete a particular student(s); type 'N' or 'n'\nMerge the lists; type 'M' or 'm'\nINPUT: "; // prompt for user input
@@ -244,7 +244,7 @@ int main(){
             threshold(AllHead, gpa, rscore);
           }
           cout << "Press anything to terminate the program\nINPUT: ";
-          cin << cont
+          cin >> cont;
           return 0;
         }
         else
@@ -256,7 +256,7 @@ int main(){
       else
       {
         cout << "INPUT ERROR\n";
-        goto tryagain1; // gateway #1 of loop for user input 2nd error
+        goto tryagainType; // gateway #1 of loop for user input 2nd error
       }
     }
     else if ((userInStu == "i")||(userInStu == "I"))
@@ -277,21 +277,21 @@ int main(){
         {
           cout << "Enter the CGPA to be searched for: ";
           cin >> gpa;
-          search_CGPA(Ihead, Itail, gpa);
+          search_CGPA(Ihead, gpa);
         }
         //Search by research score
         else if ((userInSub == "r")||(userInSub == "R"))
         {
           cout << "Enter the research score to be searched for: ";
           cin >> rscore;
-          search_score(Ihead, Itail, rscore);
+          search_score(Ihead, rscore);
         }
         //Search by ID
         else if ((userInSub == "i")||(userInSub == "I"))
         {
           cout << "Enter the ID to be searched for: ";
           cin >> eyedee;
-          search_ID(Ihead, Itail, eyedee);
+          search_ID(Ihead, eyedee);
         }
         // Search by first name
         else if ((userInSub == "n")||(userInSub == "N"))
@@ -300,7 +300,7 @@ int main(){
           cin >> firstname;
           cout << "Enter the last name to be searched for: ";
           cin >> lastname;
-          search_name(Ihead, Itail, firstname, lastname);
+          search_name(Ihead, firstname, lastname);
         }
         else
         {
@@ -347,7 +347,7 @@ int main(){
         }
       }
       //Linked List stuff
-      else if ((userInComp == "l")||(userInComp == "L"))
+      else if ((userInType == "l")||(userInType == "L"))
       {
         tryagainList2: //gateway #1 of loop for user input 2nd error
         cout << "Would you like to:\nInsert a student; type 'A' or 'a'\nDelete the top and bottom nodes; type 'D' or 'd'\nDelete a particular student(s); type 'N' or 'n'\nMerge the lists; type 'M' or 'm'\nINPUT: "; // prompt for user input
@@ -385,7 +385,7 @@ int main(){
             threshold(AllHead, gpa, rscore);
           }
           cout << "Press anything to terminate the program\nINPUT: ";
-          cin << cont
+          cin >> cont;
           return 0;
         }
         else
