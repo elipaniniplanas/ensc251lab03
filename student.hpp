@@ -4,6 +4,7 @@
 #define STUDENT_HPP
 using namespace std; //use namespace std
 #include <string> //you will have to use string in C++
+#include <cctype>
 #include <iostream>
 
 class ToeflScore

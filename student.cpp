@@ -1,6 +1,7 @@
 //student.cpp to implement your classes
 #include "student.hpp"
 #include <iostream>
+#include <cctype>
 
 //ToeflScore constructor
 ToeflScore::ToeflScore(int read, int write, int listen, int speak)
@@ -150,21 +151,13 @@ student::student(string first, string last, float cgpa, int score, int id)
         {
                 SCORE = score;
         }
-        if((fname.at(0)>96) && (fname.at(0)<123))
+        if(!(isupper(fname[0])))
         {
-          fname.at(0) = fname.at(0)-32;
+          fname[0] = toupper(fname[0]);
         }
-        else if((fname.at(0)<65) || (fname.at(0)>90))
+        if(!(isupper(lname[0])))
         {
-          cout<<"The name entered contains invaled symbols";
-        }
-        if((lname.at(0)>=97) && (lname.at(0)<=122))
-        {
-          lname.at(0) = lname.at(0)-32;
-        }
-        else if((lname.at(0)<65) || (lname.at(0)>90))
-        {
-          cout<<"The name entered contains invaled symbols";
+          lname[0] = toupper(lname[0]);
         }
         fname = first;
         lname = last;
