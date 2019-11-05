@@ -258,7 +258,7 @@ bool student::isInt()
 {
   return false;
 }
-void student::print();
+void student::print()
 {
   cout << "printing from student";
 }
@@ -473,7 +473,7 @@ void search_name(studentptr head, string fn, string ln)
   {
     if ((searched->getfname() == fn) && (searched->getlname() == ln))
     {
-      searched->student*;
+      searched->print();
       found = true;
     }
     searched = searched->getlink();
@@ -800,7 +800,7 @@ bool DomesticStudent::isInt()
 {
   return false;
 }
-void DomesticStudent::print();
+void DomesticStudent::print()
 {
   cout << "Domestic student" << " " << this->getfname() << " "
 	 << this->getlname() << " from " << this->getprovince() << " province has cgpa of "
