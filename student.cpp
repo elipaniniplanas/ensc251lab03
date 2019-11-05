@@ -367,6 +367,7 @@ string compareOverall(studentptr left, studentptr right)//left is <greater/equal
 
 void add_node(studentptr head, studentptr tail, studentptr newstudent)
 {
+  newstudent->print();
   studentptr temp;
   if(newstudent->checkTOEFL())
   {
