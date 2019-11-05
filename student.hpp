@@ -57,6 +57,7 @@ public:
   virtual bool isInt();
   virtual void print();
   virtual bool checkTOEFL() const;
+  // virtual ~student();
   //friend functions
   friend string compareCountry(student, student);
   friend string compareProvince(student, student);

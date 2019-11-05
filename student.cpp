@@ -262,6 +262,10 @@ void student::print()
 {
   cout << "printing from student";
 }
+// student::~student()
+// {
+//
+// }
 string compareCountry(student left, student right)
 {
   return "ERR";
@@ -374,6 +378,7 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
   studentptr temp;
   if(newstudent->checkTOEFL())
   {
+    delete newstudent;
     return;
   }
 	if(!head)//checks if the list is empty
