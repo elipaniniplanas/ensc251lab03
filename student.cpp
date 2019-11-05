@@ -753,23 +753,36 @@ void sortOverall(studentptr head, studentptr tail)
 head = newhead;
 tail = newtail;
 }
-studentptr merge(const studentptr &domestic, const studentptr &internationalhead, const studentptr &internationaltail, studentptr mergedhead, studentptr mergedtail)
+void merge(studentptr domestic, studentptr internationalhead, studentptr internationaltail, studentptr mergedhead, studentptr mergedtail)
 {
-  int counter = 0;
   studentptr insert = domestic;
-
-  while (temp)
-  {
-
-    counter++
-  }
-  studentptr insert = domestic;
-  while(domestic)
+  studentptr mergedhead = internationalhead;
+  studentptr mergedtail = internationaltail;
+  while (insert)
   {
     add_node(mergedhead, mergedtail, insert);
+    insert = insert->getlink();
   }
 }
-
+void threshold(studentptr head, float cgpa, int score)
+{
+  bool found = false;
+  studentptr searched;
+  searched = head;
+  while (searched)
+  {
+    if ((searched->getscore() >= score) && (searched->getCGPA() >= cgpa))
+    {
+      searched->print();
+      found = true;
+    }
+    searched=searched->getlink();
+  }
+  if(!found)
+  {
+    cout << "Can't find any students reaching this threshold" << endl;
+  }
+}
 
 //Constructor for the DomesticStudent class
 DomesticStudent::DomesticStudent(string first, string last, float cgpa, int score, int id, string pv):
