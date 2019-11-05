@@ -150,7 +150,7 @@ student::student(string first, string last, float cgpa, int score, int id)
         {
                 SCORE = score;
         }
-        if((fname.at(0)>=97) && (fname.at(0)<=122))
+        if((fname.at(0)>96) && (fname.at(0)<123))
         {
           fname.at(0) = fname.at(0)-32;
         }
