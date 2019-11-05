@@ -835,7 +835,7 @@ void insertD(studentptr head, studentptr tail, int id)
   cin >> cgpa;
   cout << "Please enter the Province the student used to live in: ";
   cin >> province;
-  studentptr DtempPtr = new DomesticStudent(fn, ln, cgpa, researchscore, *id, province);
+  studentptr DtempPtr = new DomesticStudent(fn, ln, cgpa, researchscore, id, province);
   add_node(head, tail, DtempPtr);
   studentptr temp = head;
   while(temp)
@@ -933,7 +933,7 @@ bool InternationalStudent::isInt() const
   return true;
 }
 
-void insertI(studentptr head, studentptr tail, int* id)
+void insertI(studentptr head, studentptr tail, int id)
 {
   string fn, ln, country;
   float cgpa;
@@ -956,9 +956,14 @@ void insertI(studentptr head, studentptr tail, int* id)
   cin >> listen;
   cout << "Please enter the Speaking TOEFL score of the student to be inserted: ";
   cin >> speak;
-  studentptr ItempPtr = new InternationalStudent(fn, ln, cgpa, researchscore, *id, country, read, write, listen, speak);
+  studentptr ItempPtr = new InternationalStudent(fn, ln, cgpa, researchscore, id, country, read, write, listen, speak);
   add_node(head, tail, ItempPtr);
-  *id++;
+  studentptr temp = head;
+  while(temp)
+  {
+    cout<<*temp<<endl;
+    temp = temp->getlink();
+  }
 }
 //Overloaded << operator for InternationalStudents
 ostream& operator<<(ostream& outs, const InternationalStudent& istu)
