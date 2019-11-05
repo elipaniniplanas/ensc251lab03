@@ -262,10 +262,9 @@ void student::print()
 {
   cout << "printing from student";
 }
-// student::~student()
-// {
-//
-// }
+student::~student()
+{
+}
 string compareCountry(student left, student right)
 {
   return "ERR";
