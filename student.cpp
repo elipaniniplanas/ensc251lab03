@@ -427,8 +427,7 @@ void search_ID(studentptr head, int id)
 void search_CGPA(studentptr head, float cgpa)
 {
   bool found = false;
-  studentptr searched;
-  searched = head;
+  studentptr searched = head;
   while (searched!=NULL)
   {
     cout<<searched->getCGPA()<<endl;
@@ -440,7 +439,7 @@ void search_CGPA(studentptr head, float cgpa)
     }
     searched=searched->getlink();
   }
-  if(!found)
+  if(found==false)
   {
     cout << "Can't find any student with this CGPA" << endl;
   }
