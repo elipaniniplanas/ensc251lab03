@@ -403,6 +403,7 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
     temp->setlink(newstudent);
     }
 	}
+  delete temp;
 }
 
 void search_ID(studentptr head, int id)
@@ -576,9 +577,8 @@ void sortCGPA(studentptr head, studentptr tail)
   studentptr newhead;
   studentptr newtail;
   studentptr temp;
-  newhead = head;
-  newtail = head;
-  while(!head)
+  temp = head;
+  while(temp)
   {
       temp = newhead;
       while ((compareCGPA(temp, head) == "greater") && (temp->getlink()))
@@ -604,8 +604,6 @@ void sortCGPA(studentptr head, studentptr tail)
     }
     head = head->getlink();
   }
-head = newhead;
-tail = newtail;
 }
 void sortFirstname(studentptr head, studentptr tail)
 {
