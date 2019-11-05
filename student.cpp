@@ -250,12 +250,28 @@ bool student::checkTOEFL() const
 {
   return false;
 }
+bool student::isDom()
+{
+  return false;
+}
+bool student::isInt()
+{
+  return false;
+}
+string compareCountry(student left, student right)
+{
+  return "ERR";
+}
+string compareProvince(student left, student right)
+{
+  return "ERR";
+}
 //Comparing functions (friend functions)
 string compareResearchScore(studentptr left, studentptr right)
 {
   if(left->getscore() < right->getscore())
   {
-    return "lesser";
+    return "less";
   }
   else if(left->getscore() > right->getscore())
   {
@@ -270,7 +286,7 @@ string compareCGPA(studentptr left, studentptr right)
 {
   if(left->getCGPA() < right->getCGPA())
   {
-    return "lesser";
+    return "less";
   }
   else if (left->getCGPA() > right->getCGPA())
   {
@@ -311,7 +327,7 @@ string compareLastName(studentptr left, studentptr right)
     return "equal";
   }
 }
-string compareOverall(studentptr left, studentptr right)//left is <greater/equal/lesser> than right
+string compareOverall(studentptr left, studentptr right)//left is <greater/equal/less> than right
 {
   if(compareResearchScore(left, right) == "greater")
   {
@@ -325,20 +341,31 @@ string compareOverall(studentptr left, studentptr right)//left is <greater/equal
     }
     else if(compareCGPA(left, right) == "equal")
     {
-      return "equal";
+      if(left->isDom() && right->isInt())
+      {
+        return "greater";
+      }
+      else if(left->isDom() && right->isDom())
+      {
+        return compareProvince(*left, *right);
+      }
+      else if(left->isInt() && right->isInt())
+      {
+        return compareCountry(*left, *right);
+      }
     }
     else
     {
-      return "lesser";
+      return "less";
     }
   }
   else
   {
-    return "lesser";
+    return "less";
   }
 }
 
-void student::add_node(studentptr head, studentptr tail, studentptr newstudent)
+void add_node(studentptr head, studentptr tail, studentptr newstudent)
 {
   studentptr temp;
   if(newstudent->checkTOEFL())
@@ -521,37 +548,258 @@ void delete_tips(studentptr head, studentptr tail)
     delete tempPtr;
   }
 }
-studentptr student::merge(const studentptr &otherhead) const
+void sortResearchscore(studentptr head, studentptr tail)
 {
-  studentptr newhead = new student;
+  studentptr newhead;
   studentptr newtail;
-  newtail = newhead;
-  studentptr Dhead = this;
-  studentptr Ihead;
-  while(1)
+  while(!head)
   {
-    if (this == NULL)
+    if(!newhead)//checks if the list is empty
+  	{
+  		newhead = head;
+      newtail = head;
+  	}
+  	else
+  	{
+      temp = newhead;
+      while ((compareCGPA(temp, head) == "greater") && (temp->getlink()))
+      {
+        temp = temp->getlink();
+      }
+      if(newtail == temp)
+      {
+        head->setlink(temp->getlink());
+        temp->setlink(head);
+        newtail = head;//make the tail point to the newstudent node because it is the "lowest"
+      }
+      else if(newhead == temp)
+      {
+        head->setlink(temp);
+        newhead = head;
+      }
+      else
+      {
+      head->setlink(temp->getlink());
+      temp->setlink(head);
+      }
+    }
+    head = head.getlink();
+  }
+head = newhead;
+tail = newtail;
+}
+void sortCGPA(studentptr head, studentptr tail)
+{
+  studentptr newhead;
+  studentptr newtail;
+  while(!head)
+  {
+    if(!newhead)//checks if the list is empty
+  	{
+  		newhead = head;
+      newtail = head;
+  	}
+  	else
+  	{
+      temp = newhead;
+      while ((compareCGPA(temp, head) == "greater") && (temp->getlink()))
+      {
+        temp = temp->getlink();
+      }
+      if(newtail == temp)
+      {
+        head->setlink(temp->getlink());
+        temp->setlink(head);
+        newtail = head;//make the tail point to the newstudent node because it is the "lowest"
+      }
+      else if(newhead == temp)
+      {
+        head->setlink(temp);
+        newhead = head;
+      }
+      else
+      {
+      head->setlink(temp->getlink());
+      temp->setlink(head);
+      }
+    }
+    head = head.getlink();
+  }
+head = newhead;
+tail = newtail;
+}
+void sortFirstname(studentptr head, studentptr tail)
+{
+  studentptr newhead;
+  studentptr newtail;
+  while(!head)
+  {
+    if(!newhead)//checks if the list is empty
+  	{
+  		newhead = head;
+      newtail = head;
+  	}
+  	else
+  	{
+      temp = newhead;
+      while ((compareFirstName(temp, head) == "greater") && (temp->getlink()))
+      {
+        temp = temp->getlink();
+      }
+      if(newtail == temp)
+      {
+        head->setlink(temp->getlink());
+        temp->setlink(head);
+        newtail = head;//make the tail point to the newstudent node because it is the "lowest"
+      }
+      else if(newhead == temp)
+      {
+        head->setlink(temp);
+        newhead = head;
+      }
+      else
+      {
+      head->setlink(temp->getlink());
+      temp->setlink(head);
+      }
+    }
+    head = head.getlink();
+  }
+head = newhead;
+tail = newtail;
+}
+void sortLastname(studentptr head, studentptr tail)
+{
+  studentptr newhead;
+  studentptr newtail;
+  while(!head)
+  {
+    if(!newhead)//checks if the list is empty
+  	{
+  		newhead = head;
+      newtail = head;
+  	}
+  	else
+  	{
+      temp = newhead;
+      while ((compareLastName(temp, head) == "greater") && (temp->getlink()))
+      {
+        temp = temp->getlink();
+      }
+      if(newtail == temp)
+      {
+        head->setlink(temp->getlink());
+        temp->setlink(head);
+        newtail = head;//make the tail point to the newstudent node because it is the "lowest"
+      }
+      else if(newhead == temp)
+      {
+        head->setlink(temp);
+        newhead = head;
+      }
+      else
+      {
+      head->setlink(temp->getlink());
+      temp->setlink(head);
+      }
+    }
+    head = head.getlink();
+  }
+head = newhead;
+tail = newtail;
+}
+void sortOverall(studentptr head, studentptr tail)
+{
+  studentptr newhead;
+  studentptr newtail;
+  while(!head)
+  {
+    if(!newhead)//checks if the list is empty
+  	{
+  		newhead = head;
+      newtail = head;
+  	}
+  	else
+  	{
+      temp = newhead;
+      while ((compareOverall(temp, head) == "greater") && (temp->getlink()))
+      {
+        temp = temp->getlink();
+      }
+      if(newtail == temp)
+      {
+        head->setlink(temp->getlink());
+        temp->setlink(head);
+        newtail = head;//make the tail point to the newstudent node because it is the "lowest"
+      }
+      else if(newhead == temp)
+      {
+        head->setlink(temp);
+        newhead = head;
+      }
+      else
+      {
+      head->setlink(temp->getlink());
+      temp->setlink(head);
+      }
+    }
+    head = head.getlink();
+  }
+head = newhead;
+tail = newtail;
+}
+void domesticOverallSort(DomesticStudent *arr, int n)
+{
+  int i, j, k;
+  bool disorganized;
+  for (i = 0; i < n-1; i++)
+  {
+    disorganized = false;
+    for (j = 0; j < n-i-1; j++)
     {
-      newtail->setlink(
+      if (compareResearchScore(arr[j], arr[j+1]) == "less")
+      {
+        Dswap(&arr[j], &arr[j+1]);
+        disorganized = true;
+      }
+      else if (compareResearchScore(arr[j], arr[j+1]) == "equal")
+      {
+        if (compareCGPA(arr[j], arr[j+1]) == "less")
+        {
+          Dswap(&arr[j], &arr[j+1]);
+          disorganized = true;
+        }
+        else if (compareCGPA(arr[j], arr[j+1]) == "equal")
+        {
+          if (compareProvince(arr[j], arr[j+1]) == "greater")
+          {
+            Dswap(&arr[j], &arr[j+1]);
+            disorganized = true;
+          }
+        }
+      }
+    }
+    if (!disorganized)
+    {
+      break;
     }
   }
+}
+studentptr merge(const studentptr &domestic, const studentptr &internationalhead, const studentptr &internationaltail, studentptr mergedhead, studentptr mergedtail)
+{
+  int counter = 0;
+  studentptr insert = domestic;
 
-
-
-
-  newhead->setlink(link);
-  newhead->setfname(fname);
-  newhead->setlname(lname);
-  newhead->setCGPA(CGPA);
-  newhead->setscore(score);
-  newhead->setID(ID);
-  studentptr temp = new student;
-  *temp = *otherhead
-  while(temp->getlink() != NULL)
+  while (temp)
   {
-    newhead->add_node(*temp);
+
+    counter++
   }
-  return newhead;
+  studentptr insert = domestic;
+  while(domestic)
+  {
+    add_node(mergedhead, mergedtail, insert);
+  }
 }
 
 
@@ -579,8 +827,29 @@ bool DomesticStudent::checkTOEFL() const
 {
   return false;
 }
-
-
+bool DomesticStudent::isDom()
+{
+  return true;
+}
+bool DomesticStudent::isInt()
+{
+  return false;
+}
+string compareProvince(DomesticStudent left, DomesticStudent right)
+{
+  if (left.province < right.province)
+  {
+    return "less";
+  }
+  else if (left.province > right.province)
+  {
+    return "greater";
+  }
+  else
+  {
+    return "equal";
+  }
+}
 //Constructor for the InternationalStudent class
 InternationalStudent::InternationalStudent(string first, string last, float cgpa, int score, int id, string co, int read, int write , int listen, int speak):
         student(first, last, cgpa, score, id)
@@ -660,38 +929,13 @@ bool InternationalStudent::checkTOEFL() const
     return false;
   }
 }
-void add_Inode(studentptr head, studentptr tail, InternationalStudent)
+bool InternationalStudent::isDom()
 {
-  studentptr temp;
-	if(!head)//checks if the list is empty
-	{
-		head = newstudent;
-    tail = newstudent;
-	}
-	else
-	{
-    temp = head;
-    while ((compareOverall(temp, newstudent) == "greater") && (temp->getlink()))
-    {
-      temp = temp->getlink();
-    }
-    if(tail == temp)
-    {
-      newstudent->setlink(temp->getlink());
-      temp->setlink(newstudent);
-      tail = newstudent;//make the tail point to the newstudent node because it is the "lowest"
-    }
-    else if(head == temp)
-    {
-      newstudent->setlink(temp);
-      head = newstudent;
-    }
-    else
-    {
-    newstudent->setlink(temp->getlink());
-    temp->setlink(newstudent);
-    }
-	}
+  return false;
+}
+bool InternationalStudent::isInt()
+{
+  return true;
 }
 
 void insertI(studentptr head, studentptr tail, int* id)
@@ -742,408 +986,3 @@ ostream& operator<<(ostream& outs, const InternationalStudent& istu)
 	 << istu.gettotal() <<endl;
    return(outs);
 }
-//Student's friend functions
-/*string compareCGPA(student overallgpa1, student overallgpa2)
-{
-        student result1,result2;
-        result1.CGPA = overallgpa1.CGPA;
-        result2.CGPA = overallgpa2.CGPA;
-        if (result1.CGPA < result2.CGPA)
-        {
-                return "less";
-        }
-        else if (result1.CGPA > result2.CGPA)
-        {
-                return "greater";
-        }
-        else
-        {
-                return "equal";
-}
-string compareResearchScore(student overallscore1, student overallscore2)
-{
-        student result1,result2;
-        result1.SCORE = overallscore1.SCORE;
-        result2.SCORE = overallscore2.SCORE;
-        if (result1.SCORE < result2.SCORE)
-        {
-                return "less";
-        }
-        else if (result1.SCORE > result2.SCORE)
-        {
-                return "greater";
-        }
-        else
-        {
-                return "equal";
-        }
-}
-string compareFirstName(student overallfname1, student overallfname2)
-{
-        student result1,result2;
-        result1.fname = overallfname1.fname;
-        result2.fname = overallfname2.fname;
-        if (result1.fname < result2.fname)
-        {
-                return "less";
-        }
-        else if (result1.fname > result2.fname)
-        {
-                return "greater";
-        }
-        else
-        {
-                return "equal";
-        }
-}
-string compareLastName(student overalllname1, student overalllname2)
-{
-        cout << "test comp";
-        if (overalllname1.lname < overalllname2.lname)
-        {
-                return "less";//the first one's name is first in the alphabet
-        }
-        else if (overalllname1.lname > overalllname2.lname)
-        {
-                return "greater";
-        }
-        else
-        {
-                return "equal";
-        }
-}
-//friend functions for DomesticStudents
-string compareProvince(DomesticStudent overallProv1, DomesticStudent overallProv2)
-{
-        if (overallProv1.province < overallProv2.province)
-        {
-                return "less";
-        }
-        else if (overallProv1.province > overallProv2.province)
-        {
-                return "greater";
-        }
-        else
-        {
-                return "equal";
-        }
-}
-void Dswap(DomesticStudent *xp, DomesticStudent *yp)
-{
-    DomesticStudent temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
-void Dbubblesort_CGPA(DomesticStudent *arr, int n)
-{
-  int i, j;
-  bool disorganized;
-  for (i = 0; i < n-1; i++)
-  {
-    disorganized = false;
-    for (j = 0; j < n-i-1; j++)
-    {
-      if (compareCGPA((arr[j]), (arr[j+1])) == "less")   //(arr[j] < arr[j+1]) //change this with the compare function
-      {
-        Dswap(&arr[j], &arr[j+1]);
-        disorganized = true;
-      }
-    }
-    if (!disorganized)
-    {
-      break;
-    }
-  }
-}
-void Dbubblesort_ResearchScore(DomesticStudent *arr, int n)
-{
-  int i, j;
-  bool disorganized;
-  for (i = 0; i < n-1; i++)
-  {
-    disorganized = false;
-    for (j = 0; j < n-i-1; j++)
-    {
-      if (compareResearchScore(arr[j], arr[j+1]) == "less")   //(arr[j] < arr[j+1]) //change this with the compare function
-      {
-        Dswap(&arr[j], &arr[j+1]);
-        disorganized = true;
-      }
-    }
-    if (!disorganized)
-    {
-      break;
-    }
-  }
-}
-void Dbubblesort_FirstName(DomesticStudent *arr, int n)
-{
-  int i, j;
-  bool disorganized;
-  for (i = 0; i < n-1; i++)
-  {
-    disorganized = false;
-    for (j = 0; j < n-i-1; j++)
-    {
-      if (compareFirstName(arr[j], arr[j+1]) == "greater")   //(arr[j] < arr[j+1]) //change this with the compare function
-      {
-        Dswap(&arr[j], &arr[j+1]);
-        disorganized = true;
-      }
-    }
-    if (!disorganized)
-    {
-      break;
-    }
-  }
-}
-void Dbubblesort_LastName(DomesticStudent *arr , int n)
-{
-  int i, j;
-  bool disorganized;
-  for (i = 0; i < n-1; i++)
-  {
-    disorganized = false;
-    for (j = 0; j < n-i-1; j++)
-    {
-      if (compareLastName(arr[j], arr[j+1]) == "greater")   //(arr[j] < arr[j+1]) //change this with the compare function
-      {
-        Dswap(&arr[j], &arr[j+1]);
-        disorganized = true;
-      }
-    }
-    if (!disorganized)
-    {
-      break;
-    }
-  }
-}
-void domesticOverallSort(DomesticStudent *arr, int n)
-{
-  int i, j, k;
-  bool disorganized;
-  for (i = 0; i < n-1; i++)
-  {
-    disorganized = false;
-    for (j = 0; j < n-i-1; j++)
-    {
-      if (compareResearchScore(arr[j], arr[j+1]) == "less")
-      {
-        Dswap(&arr[j], &arr[j+1]);
-        disorganized = true;
-      }
-      else if (compareResearchScore(arr[j], arr[j+1]) == "equal")
-      {
-        if (compareCGPA(arr[j], arr[j+1]) == "less")
-        {
-          Dswap(&arr[j], &arr[j+1]);
-          disorganized = true;
-        }
-        else if (compareCGPA(arr[j], arr[j+1]) == "equal")
-        {
-          if (compareProvince(arr[j], arr[j+1]) == "greater")
-          {
-            Dswap(&arr[j], &arr[j+1]);
-            disorganized = true;
-          }
-        }
-      }
-    }
-    if (!disorganized)
-    {
-      break;
-    }
-  }
-}
-//friend funcitons for InternationalStudents
-string compareCountry(InternationalStudent overallCo1, InternationalStudent overallCo2)
-{
-        if (overallCo1.country < overallCo2.country)
-        {
-                return "less";
-        }
-        else if (overallCo1.country > overallCo2.country)
-        {
-                return "greater";
-        }
-        else
-        {
-                return "equal";
-        }
-}
-void Iswap(InternationalStudent *xp, InternationalStudent *yp)
-{
-    InternationalStudent temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
-void deleteIelement(InternationalStudent *arr, int n, int del)
-{
-  int i, j;
-  for(int j=del; j<(n-1); j++)
-			{
-				arr[j]=arr[j+1];
-			}
-}
-void Ibubblesort_CGPA(InternationalStudent *arr, int n)
-{
-    int i, j;
-    bool disorganized;
-    for (i = 0; i < n-1; i++)
-    {
-      disorganized = false;
-      for (j = 0; j < n-i-1; j++)
-      {
-        if (compareCGPA((arr[j]), (arr[j+1])) == "less")   //(arr[j] < arr[j+1]) //change this with the compare function
-        {
-          Iswap(&arr[j], &arr[j+1]);
-          disorganized = true;
-        }
-      }
-      if (!disorganized)
-      {
-        break;
-      }
-    }
-}
-void Ibubblesort_ResearchScore(InternationalStudent *arr, int n)
-{
-    int i, j;
-    bool disorganized;
-    for (i = 0; i < n-1; i++)
-    {
-      disorganized = false;
-      for (j = 0; j < n-i-1; j++)
-      {
-        if (compareResearchScore(arr[j], arr[j+1]) == "less")   //(arr[j] < arr[j+1]) //change this with the compare function
-        {
-          Iswap(&arr[j], &arr[j+1]);
-          disorganized = true;
-        }
-      }
-      if (!disorganized)
-      {
-        break;
-      }
-    }
-}
-void Ibubblesort_FirstName(InternationalStudent *arr, int n)
-{
-    int i, j;
-    bool disorganized;
-    for (i = 0; i < n-1; i++)
-    {
-      disorganized = false;
-      for (j = 0; j < n-i-1; j++)
-      {
-        if (compareFirstName(arr[j], arr[j+1]) == "greater")   //(arr[j] < arr[j+1]) //change this with the compare function
-        {
-          Iswap(&arr[j], &arr[j+1]);
-          disorganized = true;
-        }
-      }
-      if (!disorganized)
-      {
-        break;
-      }
-    }
-}
-void Ibubblesort_LastName(InternationalStudent *arr, int n)
-{
-    int i, j;
-    bool disorganized;
-    for (i = 0; i < n-1; i++)
-    {
-      disorganized = false;
-      for (j = 0; j < n-i-1; j++)
-      {
-        if (compareLastName(arr[j], arr[j+1]) == "greater")   //(arr[j] < arr[j+1]) //change this with the compare function
-        {
-          Iswap(&arr[j], &arr[j+1]);
-          disorganized = true;
-        }
-      }
-      if (!disorganized)
-      {
-        break;
-      }
-    }
-}
-void internationalOverallSort(InternationalStudent *arr, int n)
-{
-  int i, j, k, counter;
-  counter = 0;
-  bool disorganized;
-  for (i = 0; i < n-1; i++)
-  {
-    disorganized = false;
-    for (j = 0; j < n-i-1; j++)
-    {
-      if (compareResearchScore(arr[j], arr[j+1]) == "less")
-      {
-        Iswap(&arr[j], &arr[j+1]);
-        disorganized = true;
-      }
-      else if (compareResearchScore(arr[j], arr[j+1]) == "equal")
-      {
-        if (compareCGPA(arr[j], arr[j+1]) == "less")
-        {
-          Iswap(&arr[j], &arr[j+1]);
-          disorganized = true;
-        }
-        else if (compareCGPA(arr[j], arr[j+1]) == "equal")
-        {
-          if (compareCountry(arr[j], arr[j+1]) == "greater")
-          {
-            Iswap(&arr[j], &arr[j+1]);
-            disorganized = true;
-          }
-        }
-      }
-    }
-    if (!disorganized)
-    {
-      break;
-    }
-  }
-  for (k = 0; k < n-1; k++)
-  {
-    redo:
-    if((arr+k)->gettoeflread() < 20)
-    {
-      deleteIelement(arr, n, k);
-      goto redo;
-    }
-    else if((arr+k)->gettoeflwrite() < 20)
-    {
-      deleteIelement(arr, n, k);
-      goto redo;
-    }
-    else if((arr+k)->gettoefllisten() < 20)
-    {
-      deleteIelement(arr, n, k);
-      goto redo;
-    }
-    else if((arr+k)->gettoeflspeak() < 20)
-    {
-      deleteIelement(arr, n, k);
-      goto redo;
-    }
-    else if((arr+k)->gettotal() < 93)
-    {
-      deleteIelement(arr, n, k);
-      goto redo;
-    }
-    else
-    {
-      counter++;
-    }
-  }
-  InternationalStudent temp[counter];
-  for (k = 0; k < counter; k++)
-  {
-    temp[k] = arr[k];
-  }
-  arr = temp;
-}
-*/

@@ -120,16 +120,12 @@ int main(){
       //Sort by CGPA
       if ((userInComp == "c")||(userInComp == "C"))
       {
-        Dbubblesort_CGPA(Dstudent, sizeD);
-        for(int k=0; k < sizeD; k++)
-        {
-          cout << Dstudent[k];
-        }
+        bubblesort_CGPA(Dhead, Dtail);
       }
       // Sort by research score
       else if ((userInComp == "r")||(userInComp == "R"))
       {
-        Dbubblesort_ResearchScore(Dstudent, sizeD);
+        bubblesort_ResearchScore(Dhead, Dtail);
         for(int k=0; k < sizeD; k++)
         {
           cout << Dstudent[k];
@@ -138,7 +134,7 @@ int main(){
       // Sort by first name
       else if ((userInComp == "f")||(userInComp == "F"))
       {
-        Dbubblesort_FirstName(Dstudent, sizeD);
+        bubblesort_FirstName(Dhead, Dtail);
         for(int k=0; k < sizeD; k++)
         {
           cout << Dstudent[k];
@@ -147,7 +143,7 @@ int main(){
       // Sort by last name
       else if ((userInComp == "l")||(userInComp == "L"))
       {
-        Dbubblesort_LastName(Dstudent, sizeD);
+        bubblesort_LastName(Dhead, Dtail);
         for(int k=0; k < sizeD; k++)
         {
           cout << Dstudent[k];
@@ -155,7 +151,7 @@ int main(){
       }
       else if ((userInComp == "o")||(userInComp == "O"))
       {
-        domesticOverallSort(Dstudent, sizeD);
+        OverallSort(Dstudent, sizeD);
         for(int k=0; k < sizeD; k++)
         {
           cout << Dstudent[k];
@@ -176,7 +172,7 @@ int main(){
       // Sort by CGPA
       if ((userInComp == "c")||(userInComp == "C"))
       {
-        Ibubblesort_CGPA(Istudent, sizeI);
+        bubblesort_CGPA(Ihead, Itail);
         for(int k=0; k < sizeI; k++)
         {
           cout << Istudent[k];
@@ -185,7 +181,7 @@ int main(){
       // Sort by reseach score
       else if ((userInComp == "r")||(userInComp == "R"))
       {
-        Ibubblesort_ResearchScore(Istudent, sizeI);
+        bubblesort_ResearchScore(Ihead, Itail);
         for(int k=0; k < sizeI; k++)
         {
           cout << Istudent[k];
@@ -194,7 +190,7 @@ int main(){
       // Sort by first name
       else if ((userInComp == "f")||(userInComp == "F"))
       {
-        Ibubblesort_FirstName(Istudent, sizeI);
+        bubblesort_FirstName(Ihead, Itail);
         for(int k=0; k < sizeI; k++)
         {
           cout << Istudent[k];
@@ -203,7 +199,7 @@ int main(){
       // Sort by last name
       else if ((userInComp == "l")||(userInComp == "L"))
       {
-        Ibubblesort_LastName(Istudent, sizeI);
+        bubblesort_LastName(Ihead, Itail);
         for(int k=0; k < sizeI; k++)
         {
           cout << Istudent[k];
@@ -211,7 +207,7 @@ int main(){
       }
       else if ((userInComp == "o")||(userInComp == "O"))
       {
-        internationalOverallSort(Istudent, sizeD);
+        OverallSort(Ihead, Itail);
         for(int k=0; k < sizeD; k++)
         {
           cout << Istudent[k];
