@@ -111,7 +111,7 @@ public:
         virtual bool isInt();
         // Friend functions
         friend string compareProvince(DomesticStudent, DomesticStudent);
-        friend void insertD(student*, student*, int*);
+        friend void insertD(student*, student*, int);
         friend ostream& operator<<(ostream& outs, const DomesticStudent& dstu);
 private:
         string province;

@@ -820,7 +820,7 @@ ostream& operator<<(ostream& outs, const DomesticStudent& dstu)
 	 << ", the assigned ID is " << dstu.getID() << endl;
    return(outs);
 }
-void insertD(studentptr head, studentptr tail, int* id)
+void insertD(studentptr head, studentptr tail, int id)
 {
   string fn, ln, province;
   float cgpa;
@@ -837,7 +837,6 @@ void insertD(studentptr head, studentptr tail, int* id)
   cin >> province;
   studentptr DtempPtr = new DomesticStudent(fn, ln, cgpa, researchscore, *id, province);
   add_node(head, tail, DtempPtr);
-  *id++;
   studentptr temp = head;
   while(temp)
   {
