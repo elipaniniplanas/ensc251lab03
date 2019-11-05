@@ -55,6 +55,7 @@ public:
   //virtual functions
   virtual bool isDom();
   virtual bool isInt();
+  virtual void print();
   virtual bool checkTOEFL() const;
   //friend functions
   friend string compareCountry(student, student);
@@ -111,6 +112,7 @@ public:
         virtual bool checkTOEFL() const;
         virtual bool isDom();
         virtual bool isInt();
+        virtual void print();
         // Friend functions
         friend string compareProvince(DomesticStudent, DomesticStudent);
         friend ostream& operator<<(ostream& outs, const DomesticStudent& dstu);
@@ -140,6 +142,7 @@ public:
         virtual bool checkTOEFL() const;
         virtual bool isDom() const;
         virtual bool isInt() const;
+        virtual void print();
         //friend functions
         friend string compareCountry(InternationalStudent, InternationalStudent);
         friend ostream& operator<<(ostream& outs, const InternationalStudent& istu);

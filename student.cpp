@@ -258,6 +258,10 @@ bool student::isInt()
 {
   return false;
 }
+void student::print();
+{
+  cout << "printing from student";
+}
 string compareCountry(student left, student right)
 {
   return "ERR";
@@ -412,7 +416,7 @@ void search_ID(studentptr head, int id)
   {
     if (searched->getID() == id)
     {
-      cout<<*searched<<endl;
+      searched->print();
       found = true;
     }
     searched=searched->getlink();
@@ -431,7 +435,7 @@ void search_CGPA(studentptr head, float cgpa)
   {
     if (searched->getCGPA() == cgpa)
     {
-      cout<<*searched<<endl;
+      searched->print();
       found = true;
     }
     searched=searched->getlink();
@@ -450,7 +454,7 @@ void search_score(studentptr head, int score)
   {
     if (searched->getscore() == score)
     {
-      cout<<*searched<<endl;
+      searched->print();
       found = true;
     }
     searched=searched->getlink();
@@ -753,7 +757,7 @@ void threshold(studentptr head, float cgpa, int score)
   {
     if ((searched->getscore() >= score) && (searched->getCGPA() >= cgpa))
     {
-      cout<<*searched<<endl;
+      searched->print();
       found = true;
     }
     searched=searched->getlink();
@@ -795,6 +799,13 @@ bool DomesticStudent::isDom()
 bool DomesticStudent::isInt()
 {
   return false;
+}
+void DomesticStudent::print();
+{
+  cout << "Domestic student" << " " << this->getfname() << " "
+	 << this->getlname() << " from " << this->getprovince() << " province has cgpa of "
+	 << this->getCGPA() << ", and research score of " << this->getscore()
+	 << ", the assigned ID is " << this->getID() << endl;
 }
 string compareProvince(DomesticStudent left, DomesticStudent right)
 {
@@ -840,7 +851,7 @@ void insertD(studentptr head, studentptr tail, int id)
   studentptr temp = head;
   while(temp)
   {
-    cout<<*temp<<endl;
+    temp->print();
     temp = temp->getlink();
   }
 }
@@ -932,6 +943,16 @@ bool InternationalStudent::isInt() const
 {
   return true;
 }
+void InternationalStudent::print()
+{
+  cout << "International student" << " " << this->getfname() << " "
+	 << this->getlname() << " from " << this->getcountry() << " country has cgpa of "
+	 << this->getCGPA() << ", and research score of " << this->getscore()
+	 << ", the assigned ID is " << this->getID() <<".\n" <<"Their toefl scores are: reading "
+	 << this->gettoeflread() << ", writing "<< this->gettoeflwrite() << ", listening "
+	 << this->gettoefllisten() << ", speaking " << this->gettoeflspeak() << ", and their total toefl score is "
+	 << this->gettotal() <<endl;
+}
 
 void insertI(studentptr head, studentptr tail, int id)
 {
@@ -961,7 +982,7 @@ void insertI(studentptr head, studentptr tail, int id)
   studentptr temp = head;
   while(temp)
   {
-    cout<<*temp<<endl;
+    temp->print();
     temp = temp->getlink();
   }
 }
