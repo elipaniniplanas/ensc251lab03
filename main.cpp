@@ -10,6 +10,7 @@
 #include "student.hpp" //header file
 
 int main(){
+  cout <<"hello world"<<endl;
   //Declare the varibles used throughout the program
   string line; //Used to retrieve a line in the files
   string userInStu; // User input
@@ -52,8 +53,10 @@ int main(){
     getline(ss, s_researchScore, ',');
     researchScore = atoi(s_researchScore.c_str());
     // Set all data to a DomesticStudent node
+    cout <<"going to make a base to child"<<endl;
     studentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count, province);
     add_node(Dhead, Dtail, DtempPtr);
+    cout<<"did it"<<endl;
     counter1++;
     Dstu_count++;
     ID_count++;
