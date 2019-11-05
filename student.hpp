@@ -73,7 +73,7 @@ public:
   friend void delete_node(student*, student*, string, string);
   friend void delete_tips(student*, student*);
   friend void insertD(student*, student*, int);
-  friend void insertI(student*, student*, int*);
+  friend void insertI(student*, student*, int);
 
   friend void sortResearchscore(student*, student*);
   friend void sortCGPA(student*, student*);
