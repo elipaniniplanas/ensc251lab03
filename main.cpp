@@ -16,12 +16,12 @@ int main(){
   string userInStu; // User input
   string userInType;//User INPUT
   string userInSub; // User input
-  studentptr Dhead; //Head pointer for the DomesticStudent linked list
+  studentptr Dhead = NULL; //Head pointer for the DomesticStudent linked list
   studentptr Dtail; //Tail pointer for the DomesticStudent linked list
-  studentptr Ihead; //Head pointer for the InternationalStudent linked list
+  studentptr Ihead = NULL; //Head pointer for the InternationalStudent linked list
   studentptr Itail; //Tail pointer for the InternationalStudent linked list
   studentptr ItempPtr; //Temporary pointer for the InternationalStudent linked list
-  studentptr AllHead;
+  studentptr AllHead = NULL;
   studentptr AllTail;
 
   //Read the domestic-stu.txt file and exit if failed
