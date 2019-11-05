@@ -151,14 +151,14 @@ student::student(string first, string last, float cgpa, int score, int id)
         {
                 SCORE = score;
         }
-        if(!(isupper(fname[0])))
-        {
-          fname[0] = toupper(fname[0]);
-        }
-        if(!(isupper(lname[0])))
-        {
-          lname[0] = toupper(lname[0]);
-        }
+        // if(!(isupper(fname[0])))
+        // {
+        //   fname[0] = toupper(fname[0]);
+        // }
+        // if(!(isupper(lname[0])))
+        // {
+        //   lname[0] = toupper(lname[0]);
+        // }
         fname = first;
         lname = last;
         ID = id;
