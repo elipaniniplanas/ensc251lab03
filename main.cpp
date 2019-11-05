@@ -216,7 +216,7 @@ int main(){
         if ((userInSub == "a")||(userInSub == "A"))
         {
           insertD(Dhead, Dtail, ID_count);
-          ID_count++
+          ID_count++;
         }
         //Delete top and bottom
         else if ((userInSub == "d")||(userInSub == "D"))
