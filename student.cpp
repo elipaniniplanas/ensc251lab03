@@ -426,6 +426,8 @@ void search_ID(studentptr head, int id)
 }
 void search_CGPA(studentptr head, float cgpa)
 {
+  if(head == NULL)
+    {cout<<"yru tarded"<<endl;}
   bool found = false;
   studentptr searched = head;
   while (searched!=NULL)
