@@ -576,15 +576,10 @@ void sortCGPA(studentptr head, studentptr tail)
   studentptr newhead;
   studentptr newtail;
   studentptr temp;
+  newhead = head;
+  newtail = head;
   while(!head)
   {
-    if(!newhead)//checks if the list is empty
-  	{
-  		newhead = head;
-      newtail = head;
-  	}
-  	else
-  	{
       temp = newhead;
       while ((compareCGPA(temp, head) == "greater") && (temp->getlink()))
       {
