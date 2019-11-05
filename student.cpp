@@ -756,8 +756,8 @@ tail = newtail;
 void merge(studentptr domestic, studentptr internationalhead, studentptr internationaltail, studentptr mergedhead, studentptr mergedtail)
 {
   studentptr insert = domestic;
-  studentptr mergedhead = internationalhead;
-  studentptr mergedtail = internationaltail;
+  mergedhead = internationalhead;
+  mergedtail = internationaltail;
   while (insert)
   {
     add_node(mergedhead, mergedtail, insert);
