@@ -429,7 +429,7 @@ void search_CGPA(studentptr head, float cgpa)
   bool found = false;
   studentptr searched;
   searched = head;
-  while (searched)
+  while (searched->getLink()!=NULL)
   {
     cout<<searched->getCGPA()<<endl;
     cout<<"inside while loop of cgpa search"<< endl;
