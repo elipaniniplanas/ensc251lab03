@@ -64,6 +64,7 @@ public:
   friend string compareFirstName(student*, student*);
   friend string compareLastName(student*, student*);
   friend string compareOverall(student*, student*);
+
   friend void add_node(student*, student*, student*);
   friend void search_ID(student*, int);
   friend void search_CGPA(student*, float);
@@ -72,6 +73,7 @@ public:
   friend void insertD(student*, student*, int*);
   friend void delete_node(student*, student*, string, string);
   friend void delete_tips(student*, student*);
+
   friend void sortResearchscore(student*, student*);
   friend void sortCGPA(student*, student*);
   friend void sortFirstname(student*, student*);
