@@ -72,6 +72,8 @@ public:
   friend void search_name(student*, string, string);
   friend void delete_node(student*, student*, string, string);
   friend void delete_tips(student*, student*);
+  friend void insertD(student*, student*, int);
+  friend void insertI(student*, student*, int*);
 
   friend void sortResearchscore(student*, student*);
   friend void sortCGPA(student*, student*);
@@ -111,7 +113,6 @@ public:
         virtual bool isInt();
         // Friend functions
         friend string compareProvince(DomesticStudent, DomesticStudent);
-        friend void insertD(studentptr, studentptr, int);
         friend ostream& operator<<(ostream& outs, const DomesticStudent& dstu);
 private:
         string province;
@@ -142,7 +143,6 @@ public:
         //friend functions
         friend string compareCountry(InternationalStudent, InternationalStudent);
         friend ostream& operator<<(ostream& outs, const InternationalStudent& istu);
-        friend void insertI(studentptr, studentptr, int*);
 
 private:
         string country;
