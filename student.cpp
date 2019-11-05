@@ -412,7 +412,7 @@ void search_ID(studentptr head, int id)
   {
     if (searched->getID() == id)
     {
-      searched->print();
+      cout<<*searched<<endl;
       found = true;
     }
     searched=searched->getlink();
@@ -431,7 +431,7 @@ void search_CGPA(studentptr head, float cgpa)
   {
     if (searched->getCGPA() == cgpa)
     {
-      searched->print();
+      cout<<*searched<<endl;
       found = true;
     }
     searched=searched->getlink();
@@ -450,7 +450,7 @@ void search_score(studentptr head, int score)
   {
     if (searched->getscore() == score)
     {
-      searched->print();
+      cout<<*searched<<endl;
       found = true;
     }
     searched=searched->getlink();
@@ -469,7 +469,7 @@ void search_name(studentptr head, string fn, string ln)
   {
     if ((searched->getfname() == fn) && (searched->getlname() == ln))
     {
-      searched->print();
+      searched->student*;
       found = true;
     }
     searched = searched->getlink();
@@ -478,26 +478,6 @@ void search_name(studentptr head, string fn, string ln)
   {
     cout << "Can't find any student with this name" << endl;
   }
-}
-void insertD(studentptr head, studentptr tail, int* id)
-{
-  string fn, ln, province;
-  float cgpa;
-  int researchscore;
-  cout << "Please enter the first name of the student to be inserted: ";
-  cin >> fn;
-  cout << "Please enter the last name of the student to be inserted: ";
-  cin >> ln;
-  cout << "Please enter the research score of the student to be inserted: ";
-  cin >> researchscore;
-  cout << "Please enter the CGPA of the student to be inserted: ";
-  cin >> cgpa;
-  cout << "Please enter the Province the student used to live in: ";
-  cin >> province;
-  studentptr DtempPtr = new DomesticStudent(fn, ln, cgpa, researchscore, *id, province);
-  add_node(head, tail, DtempPtr);
-  *id++;
-  head->print();
 }
 void delete_node(studentptr head, studentptr tail, string fn, string ln)
 {
@@ -773,7 +753,7 @@ void threshold(studentptr head, float cgpa, int score)
   {
     if ((searched->getscore() >= score) && (searched->getCGPA() >= cgpa))
     {
-      searched->print();
+      cout<<*searched<<endl;
       found = true;
     }
     searched=searched->getlink();
@@ -831,6 +811,41 @@ string compareProvince(DomesticStudent left, DomesticStudent right)
     return "equal";
   }
 }
+//Overloaded << operator for Domesticstudents
+ostream& operator<<(ostream& outs, const DomesticStudent& dstu)
+{
+	outs << "Domestic student" << " " << dstu.getfname() << " "
+	 << dstu.getlname() << " from " << dstu.getprovince() << " province has cgpa of "
+	 << dstu.getCGPA() << ", and research score of " << dstu.getscore()
+	 << ", the assigned ID is " << dstu.getID() << endl;
+   return(outs);
+}
+void insertD(studentptr head, studentptr tail, int* id)
+{
+  string fn, ln, province;
+  float cgpa;
+  int researchscore;
+  cout << "Please enter the first name of the student to be inserted: ";
+  cin >> fn;
+  cout << "Please enter the last name of the student to be inserted: ";
+  cin >> ln;
+  cout << "Please enter the research score of the student to be inserted: ";
+  cin >> researchscore;
+  cout << "Please enter the CGPA of the student to be inserted: ";
+  cin >> cgpa;
+  cout << "Please enter the Province the student used to live in: ";
+  cin >> province;
+  studentptr DtempPtr = new DomesticStudent(fn, ln, cgpa, researchscore, *id, province);
+  add_node(head, tail, DtempPtr);
+  *id++;
+  studentptr temp = head;
+  while(temp)
+  {
+    cout<<*temp<<endl;
+    temp = temp->getlink();
+  }
+}
+
 //Constructor for the InternationalStudent class
 InternationalStudent::InternationalStudent(string first, string last, float cgpa, int score, int id, string co, int read, int write , int listen, int speak):
         student(first, last, cgpa, score, id)
@@ -945,15 +960,6 @@ void insertI(studentptr head, studentptr tail, int* id)
   studentptr ItempPtr = new InternationalStudent(fn, ln, cgpa, researchscore, *id, country, read, write, listen, speak);
   add_node(head, tail, ItempPtr);
   *id++;
-}
-//Overloaded << operator for Domesticstudents
-ostream& operator<<(ostream& outs, const DomesticStudent& dstu)
-{
-	outs << "Domestic student" << " " << dstu.getfname() << " "
-	 << dstu.getlname() << " from " << dstu.getprovince() << " province has cgpa of "
-	 << dstu.getCGPA() << ", and research score of " << dstu.getscore()
-	 << ", the assigned ID is " << dstu.getID() << endl;
-   return(outs);
 }
 //Overloaded << operator for InternationalStudents
 ostream& operator<<(ostream& outs, const InternationalStudent& istu)

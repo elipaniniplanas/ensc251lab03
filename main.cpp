@@ -13,7 +13,8 @@ int main(){
   //Declare the varibles used throughout the program
   string line; //Used to retrieve a line in the files
   string userInStu; // User input
-  string userInComp; // User input
+  string userInType;//User INPUT
+  string userInSub; // User input
   studentptr Dhead; //Head pointer for the DomesticStudent linked list
   studentptr Dtail; //Tail pointer for the DomesticStudent linked list
   studentptr Ihead; //Head pointer for the InternationalStudent linked list
@@ -104,6 +105,12 @@ int main(){
   internationalFile.close();
 
   string cont = "y";
+  string thresh;
+  float gpa;
+  int rscore;
+  int eyedee;
+  string firstname;
+  string lastname;
   while((cont == "Y") || (cont =="y"))
   {
     retry: //gateway of loop for user input error
@@ -113,33 +120,138 @@ int main(){
     //Sort domestic students
     if ((userInStu == "d")||(userInStu == "D"))
     {
-      tryagain1: //gateway #1 of loop for user input 2nd error
-      cout << "Sort by students by their:\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall; type 'O' or 'o'\nINPUT: "; // prompt for user input
-      cin >> userInComp;
+      tryagainType: //gateway #1 of loop for user input 2nd error
+      cout << "Would you like to:\nSearch for students; type 'S' or 's'\nOrganize students; type 'O' or 'o'\nInteract with the linked list; type 'I' or 'i'\nINPUT: "; // prompt for user input
+      cin >> userInType;
       cout << endl;
-      //Sort by CGPA
-      if ((userInComp == "c")||(userInComp == "C"))
+      //Search
+      if ((userInType == "s")||(userInType == "S"))
       {
-        sortCGPA(Dhead, Dtail);
+        tryagainSearch: //gateway #1 of loop for user input 2nd error
+        cout << "Search students by their\nID; type 'I' or 'i'\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nName; type 'N' or 'n'\nINPUT: "; // prompt for user input
+        cin >> userInSub;
+        cout << endl;
+        //Search by CGPA
+        if ((userInSub == "c")||(userInSub == "C"))
+        {
+          cout << "Enter the CGPA to be searched for: ";
+          cin >> gpa;
+          search_CGPA(Dhead, Dtail, gpa);
+        }
+        //Search by research score
+        else if ((userInSub == "r")||(userInSub == "R"))
+        {
+          cout << "Enter the research score to be searched for: ";
+          cin >> rscore;
+          search_score(Dhead, Dtail, rscore);
+        }
+        //Search by ID
+        else if ((userInSub == "i")||(userInSub == "I"))
+        {
+          cout << "Enter the ID to be searched for: ";
+          cin >> eyedee;
+          search_ID(Dhead, Dtail, eyedee);
+        }
+        // Search by name
+        else if ((userInSub == "n")||(userInSub == "N"))
+        {
+          cout << "Enter the first name to be searched for: ";
+          cin >> firstname;
+          cout << "Enter the last name to be searched for: ";
+          cin >> lastname;
+          search_name(Dhead, Dtail, firstname, lastname);
+        }
+        else
+        {
+          cout << "INPUT ERROR\n";
+          goto tryagainSearch; // gateway #1 of loop for user input 2nd error
+        }
       }
-      // Sort by research score
-      else if ((userInComp == "r")||(userInComp == "R"))
+      //Sort
+      else if ((userInType == "o")||(userInType == "O"))
       {
-        sortResearchscore(Dhead, Dtail);
+        tryagainSort: //gateway #1 of loop for user input 2nd error
+        cout << "Sort students by their\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall sort; type 'O' or 'o'\nINPUT: "; // prompt for user input
+        cin >> userInSub;
+        cout << endl;
+        //Sort by CGPA
+        if ((userInSub == "c")||(userInSub == "C"))
+        {
+          sortCGPA(Dhead, Dtail);
+        }
+        //Search by research score
+        else if ((userInSub == "r")||(userInSub == "R"))
+        {
+          sortResearchscore(Dhead, Dtail);
+        }
+        // Sort by first name
+        else if ((userInSub == "f")||(userInSub == "F"))
+        {
+          sortFirstname(Dhead, Dtail);
+        }
+        // Sort by last name
+        else if ((userInSub == "l")||(userInSub == "L"))
+        {
+          sortLastname(Dhead, Dtail);
+        }
+        // Sort by overall
+        else if ((userInSub == "o")||(userInSub == "O"))
+        {
+          sortOverall(Dhead, Dtail);
+        }
+        else
+        {
+          cout << "INPUT ERROR\n";
+          goto tryagainSort; // gateway #1 of loop for user input 2nd error
+        }
       }
-      // Sort by first name
-      else if ((userInComp == "f")||(userInComp == "F"))
-      {
-        sortFirstname(Dhead, Dtail);
-      }
-      // Sort by last name
+      //Linked List stuff
       else if ((userInComp == "l")||(userInComp == "L"))
       {
-        sortLastname(Dhead, Dtail);
-      }
-      else if ((userInComp == "o")||(userInComp == "O"))
-      {
-        sortOverall(Dhead, Dtail);
+        tryagainList: //gateway #1 of loop for user input 2nd error
+        cout << "Would you like to:\nInsert a student; type 'A' or 'a'\nDelete the top and bottom nodes; type 'D' or 'd'\nDelete a particular student(s); type 'N' or 'n'\nMerge the lists; type 'M' or 'm'\nINPUT: "; // prompt for user input
+        cin >> userInSub;
+        cout << endl;
+        //Add new student
+        if ((userInSub == "a")||(userInSub == "A"))
+        {
+          insertD(Dhead, Dtail, &id);
+        }
+        //Delete top and bottom
+        else if ((userInSub == "d")||(userInSub == "D"))
+        {
+          delete_tips(Dhead, Dtail);
+        }
+        //Delete name
+        else if ((userInSub == "n")||(userInSub == "N"))
+        {
+          delete_node(Dhead, Dtail, firstname, lastname);
+        }
+        //Merge lists
+        else if ((userInSub == "m")||(userInSub == "M"))
+        {
+          sortOverall(Dhead, Dtail);
+          sortOverall(Ihead, Itail);
+          merge(Dhead, Ihead, Itail, AllHead, AllTail);
+          cout << "Apply threshold? ('y','Y' = yes ; 'n','N' = no)\nINPUT: ";
+          cin >> thresh;
+          if((thresh == "y") || (thresh == "Y"))
+          {
+            cout << "Enter the research score\nINPUT: ";
+            cin >> rscore;
+            cout << "Enter the CGPA\nINPUT: ";
+            cin >> gpa;
+            threshold(AllHead, gpa, rscore);
+          }
+          cout << "Press anything to terminate the program\nINPUT: ";
+          cin << cont
+          return 0;
+        }
+        else
+        {
+          cout << "INPUT ERROR\n";
+          goto tryagainList; // gateway #1 of loop for user input 2nd error
+        }
       }
       else
       {
@@ -149,38 +261,143 @@ int main(){
     }
     else if ((userInStu == "i")||(userInStu == "I"))
     {
-      tryagain2: //gateway #2 of loop for user input 2nd error
-      cout << "Sort by:\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall; type 'O' or 'o'\nINPUT: ";
-      cin >> userInComp;
+      tryagainType2: //gateway #1 of loop for user input 2nd error
+      cout << "Would you like to:\nSearch for students; type 'S' or 's'\nOrganize students; type 'O' or 'o'\nInteract with the linked list; type 'I' or 'i'\nINPUT: "; // prompt for user input
+      cin >> userInType;
       cout << endl;
-      // Sort by CGPA
-      if ((userInComp == "c")||(userInComp == "C"))
+      //Search
+      if ((userInType == "s")||(userInType == "S"))
       {
-
+        tryagainSearch2: //gateway #1 of loop for user input 2nd error
+        cout << "Search students by their\nID; type 'I' or 'i'\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nName; type 'N' or 'n'\nINPUT: "; // prompt for user input
+        cin >> userInSub;
+        cout << endl;
+        //Search by CGPA
+        if ((userInSub == "c")||(userInSub == "C"))
+        {
+          cout << "Enter the CGPA to be searched for: ";
+          cin >> gpa;
+          search_CGPA(Ihead, Itail, gpa);
+        }
+        //Search by research score
+        else if ((userInSub == "r")||(userInSub == "R"))
+        {
+          cout << "Enter the research score to be searched for: ";
+          cin >> rscore;
+          search_score(Ihead, Itail, rscore);
+        }
+        //Search by ID
+        else if ((userInSub == "i")||(userInSub == "I"))
+        {
+          cout << "Enter the ID to be searched for: ";
+          cin >> eyedee;
+          search_ID(Ihead, Itail, eyedee);
+        }
+        // Search by first name
+        else if ((userInSub == "n")||(userInSub == "N"))
+        {
+          cout << "Enter the first name to be searched for: ";
+          cin >> firstname;
+          cout << "Enter the last name to be searched for: ";
+          cin >> lastname;
+          search_name(Ihead, Itail, firstname, lastname);
+        }
+        else
+        {
+          cout << "INPUT ERROR\n";
+          goto tryagainSearch2; // gateway #1 of loop for user input 2nd error
+        }
       }
-      // Sort by reseach score
-      else if ((userInComp == "r")||(userInComp == "R"))
+      //Sort
+      else if ((userInType == "o")||(userInType == "O"))
       {
-
+        tryagainSort2: //gateway #1 of loop for user input 2nd error
+        cout << "Sort students by their\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall sort; type 'O' or 'o'\nINPUT: "; // prompt for user input
+        cin >> userInSub;
+        cout << endl;
+        //Sort by CGPA
+        if ((userInSub == "c")||(userInSub == "C"))
+        {
+          sortCGPA(Ihead, Itail);
+        }
+        //Search by research score
+        else if ((userInSub == "r")||(userInSub == "R"))
+        {
+          sortResearchscore(Ihead, Itail);
+        }
+        // Sort by first name
+        else if ((userInSub == "f")||(userInSub == "F"))
+        {
+          sortFirstname(Ihead, Itail);
+        }
+        // Sort by last name
+        else if ((userInSub == "l")||(userInSub == "L"))
+        {
+          sortLastname(Ihead, Itail);
+        }
+        // Sort by last name
+        else if ((userInSub == "o")||(userInSub == "O"))
+        {
+          sortOverall(Ihead, Itail);
+        }
+        else
+        {
+          cout << "INPUT ERROR\n";
+          goto tryagainSort2; // gateway #1 of loop for user input 2nd error
+        }
       }
-      // Sort by first name
-      else if ((userInComp == "f")||(userInComp == "F"))
-      {
-
-      }
-      // Sort by last name
+      //Linked List stuff
       else if ((userInComp == "l")||(userInComp == "L"))
       {
-
-      }
-      else if ((userInComp == "o")||(userInComp == "O"))
-      {
-
+        tryagainList2: //gateway #1 of loop for user input 2nd error
+        cout << "Would you like to:\nInsert a student; type 'A' or 'a'\nDelete the top and bottom nodes; type 'D' or 'd'\nDelete a particular student(s); type 'N' or 'n'\nMerge the lists; type 'M' or 'm'\nINPUT: "; // prompt for user input
+        cin >> userInSub;
+        cout << endl;
+        //Add new student
+        if ((userInSub == "a")||(userInSub == "A"))
+        {
+          insertD(Ihead, Itail, &id);
+        }
+        //Delete top and bottom
+        else if ((userInSub == "d")||(userInSub == "D"))
+        {
+          delete_tips(Ihead, Itail);
+        }
+        //Delete name
+        else if ((userInSub == "n")||(userInSub == "N"))
+        {
+          delete_node(Ihead, Itail, firstname, lastname);
+        }
+        //Merge lists
+        else if ((userInSub == "m")||(userInSub == "M"))
+        {
+          sortOverall(Dhead, Dtail);
+          sortOverall(Ihead, Itail);
+          merge(Dhead, Ihead, Itail, AllHead, AllTail);
+          cout << "Apply threshold? ('y','Y' = yes ; 'n','N' = no)\nINPUT: ";
+          cin >> thresh;
+          if((thresh == "y") || (thresh == "Y"))
+          {
+            cout << "Enter the research score\nINPUT: ";
+            cin >> rscore;
+            cout << "Enter the CGPA\nINPUT: ";
+            cin >> gpa;
+            threshold(AllHead, gpa, rscore);
+          }
+          cout << "Press anything to terminate the program\nINPUT: ";
+          cin << cont
+          return 0;
+        }
+        else
+        {
+          cout << "INPUT ERROR\n";
+          goto tryagainList2; // gateway #1 of loop for user input 2nd error
+        }
       }
       else
       {
         cout << "INPUT ERROR\n";
-        goto tryagain2; //gateway #2 of loop for user input 2nd error
+        goto tryagainType2; // gateway #1 of loop for user input 2nd error
       }
     }
     else
@@ -188,6 +405,8 @@ int main(){
       cout << "INPUT ERROR\n";
       goto retry; //gateway of loop for user input error
     }
+    cout<<"Continue? ('y','Y' = yes ; 'n','N' = no)\nINPUT: ";
+    cin>>cont;
   }
   return 0;
 }

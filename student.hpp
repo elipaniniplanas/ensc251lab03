@@ -70,7 +70,6 @@ public:
   friend void search_CGPA(student*, float);
   friend void search_score(student*, int);
   friend void search_name(student*, string, string);
-  friend void insertD(student*, student*, int*);
   friend void delete_node(student*, student*, string, string);
   friend void delete_tips(student*, student*);
 
@@ -81,10 +80,9 @@ public:
   friend void sortOverall(student*, student*);
 
   /*The student in the parameter points to nullptr*/
-  virtual void print();
 
   friend void sortGPA(student*, student*);
-  void merge(student*, student*);
+  friend void merge(student*, student*, student*, student*, student*);
 private:
         string fname;
         string lname;
@@ -108,11 +106,11 @@ public:
         string getprovince() const;
         //virtual functions
         virtual bool checkTOEFL() const;
-        virtual void print();
         virtual bool isDom();
         virtual bool isInt();
         // Friend functions
         friend string compareProvince(DomesticStudent, DomesticStudent);
+        friend void insertD(student*, student*, int*);
         friend ostream& operator<<(ostream& outs, const DomesticStudent& dstu);
 private:
         string province;
@@ -138,7 +136,6 @@ public:
         int gettotal() const;
         //virtual functions
         virtual bool checkTOEFL() const;
-        virtual void print() const;
         virtual bool isDom() const;
         virtual bool isInt() const;
         //friend functions
