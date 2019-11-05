@@ -246,6 +246,10 @@ student* student::getlink() const
 {
 	return(link);
 }
+bool student::checkTOEFL() const
+{
+  return false;
+}
 //Comparing functions (friend functions)
 string compareResearchScore(studentptr left, studentptr right)
 {
@@ -264,11 +268,11 @@ string compareResearchScore(studentptr left, studentptr right)
 }
 string compareCGPA(studentptr left, studentptr right)
 {
-  if(left->CGPA < right->CGPA)
+  if(left->getCGPA() < right->getCGPA())
   {
     return "lesser";
   }
-  else if (left->CGPA > right->CGPA)
+  else if (left->getCGPA() > right->getCGPA())
   {
     return "greater";
   }
@@ -334,9 +338,13 @@ string compareOverall(studentptr left, studentptr right)//left is <greater/equal
   }
 }
 
-void add_node(studentptr head, studentptr tail, studentptr newstudent)
+void student::add_node(studentptr head, studentptr tail, studentptr newstudent)
 {
   studentptr temp;
+  if(newstudent->checkTOEFL())
+  {
+    return
+  }
 	if(!head)//checks if the list is empty
 	{
 		head = newstudent;
@@ -375,7 +383,7 @@ void search_ID(studentptr head, int id)
   searched = head;
   while (searched)
   {
-    if (searched->getID() == id))
+    if (searched->getID() == id)
     {
       searched->print();
       found = true;
@@ -394,7 +402,7 @@ void search_CGPA(studentptr head, float cgpa)
   searched = head;
   while (searched)
   {
-    if (searched->CGPA == cgpa))
+    if (searched->getCGPA() == cgpa))
     {
       searched->print();
       found = true;
@@ -567,6 +575,12 @@ string DomesticStudent::getprovince() const
 {
         return(province);
 }
+bool DomesticStudent::checkTOEFL() const
+{
+  return false;
+}
+
+
 //Constructor for the InternationalStudent class
 InternationalStudent::InternationalStudent(string first, string last, float cgpa, int score, int id, string co, int read, int write , int listen, int speak):
         student(first, last, cgpa, score, id)
@@ -618,6 +632,66 @@ int InternationalStudent::gettotal() const
 string InternationalStudent::getcountry() const
 {
         return(country);
+}
+bool InternationalStudent::checkTOEFL() const
+{
+  if(this->gettoeflread() < 20)
+  {
+    return true;
+  }
+  else if(this->gettoeflwrite() < 20)
+  {
+    return true;
+  }
+  else if(this->gettoefllisten() < 20)
+  {
+    return true;
+  }
+  else if(this->gettoeflspeak() < 20)
+  {
+    return true;
+  }
+  else if(this->gettotal() < 93)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+void add_Inode(studentptr head, studentptr tail, InternationalStudent)
+{
+  studentptr temp;
+	if(!head)//checks if the list is empty
+	{
+		head = newstudent;
+    tail = newstudent;
+	}
+	else
+	{
+    temp = head;
+    while ((compareOverall(temp, newstudent) == "greater") && (temp->getlink()))
+    {
+      temp = temp->getlink();
+    }
+    if(tail == temp)
+    {
+      newstudent->setlink(temp->getlink());
+      temp->setlink(newstudent);
+      tail = newstudent;//make the tail point to the newstudent node because it is the "lowest"
+    }
+    else if(head == temp)
+    {
+      newstudent->setlink(temp);
+      head = newstudent;
+    }
+    else
+    {
+    newstudent->setlink(temp->getlink());
+    temp->setlink(newstudent);
+    }
+	}
 }
 
 void insertI(studentptr head, studentptr tail, int* id)

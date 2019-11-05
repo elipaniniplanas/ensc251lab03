@@ -52,6 +52,7 @@ public:
   int getscore() const;
   int getID() const;
   student* getlink() const;
+  virtual bool checkTOEFL() const;
   //Linked list specific functions
   friend void add_node(student*, student*, student*);
   /*The student in the parameter points to nullptr*/
@@ -69,10 +70,10 @@ public:
   friend string compareCGPA(student*, student*);
   /*Input: two student objects
     Output: a string saying if the first object's CGPA member variable is greater, equal, or less than the second object's*/
-  friend string compareResearchScore(student, student);
+  friend string compareResearchScore(student*, student*);
   /*Input: two student objects
     Output: a string saying if the first object's ResearchScore member variable is greater, equal, or less than the second object's*/
-  friend string compareFirstName(student, student);
+  friend string compareFirstName(student*, student*);
   /*Input: two student objects
     Output: a string saying if the first object's fname member variable comes first in the alphabet from the second object's*/
   friend string compareLastName(student overalllname1, student overalllname2);
@@ -100,6 +101,8 @@ public:
         void setprovince(string pv);
         //Accessor functions
         string getprovince() const;
+
+        virtual bool checkTOEFL() const;
         // Friend functions
         // friend void Dswap(DomesticStudent*, DomesticStudent*);
         // /*Input: Pointer to two objects of DomesticStudents type
@@ -125,6 +128,7 @@ public:
         friend ostream& operator<<(ostream& outs, const DomesticStudent& dstu);
         //overload the << (output) operator to allow a pre-set format of outputing the member variables of a DomesticStudent object to a ostream
         virtual void print();
+        friend void add_node(student*, student*, student*);
 private:
         string province;
 };
@@ -147,6 +151,8 @@ public:
         int gettoefllisten() const;
         int gettoeflspeak() const;
         int gettotal() const;
+
+        virtual bool checkTOEFL() const;
         // Friend functions
         // friend void Iswap(InternationalStudent*, InternationalStudent*);
         // /*Input: Pointer to two objects of InternationalStudents type

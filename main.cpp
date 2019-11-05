@@ -103,87 +103,131 @@ int main(){
   //close your file
   internationalFile.close();
 
-
-  retry:
-  cout << "What would you like to sort:\nDomestic students; type 'D' or 'd'\nInternational students; type 'I' or 'i'\nINPUT: "; // prompt for user input
-  cin >> userInStu;
-  cout << endl;
-  //Sort domestic students
-  if ((userInStu == "d")||(userInStu == "D"))
+  string cont = "y";
+  while((cont == "Y") || (cont =="y"))
   {
-    tryagain1: //gateway #1 of loop for user input 2nd error
-    cout << "Sort by students by their:\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall; type 'O' or 'o'\nINPUT: "; // prompt for user input
-    cin >> userInComp;
+    retry: //gateway of loop for user input error
+    cout << "What would you like to sort:\nDomestic students; type 'D' or 'd'\nInternational students; type 'I' or 'i'\nINPUT: "; // prompt for user input
+    cin >> userInStu;
     cout << endl;
-    //Sort by CGPA
-    if ((userInComp == "c")||(userInComp == "C"))
+    //Sort domestic students
+    if ((userInStu == "d")||(userInStu == "D"))
     {
-
+      tryagain1: //gateway #1 of loop for user input 2nd error
+      cout << "Sort by students by their:\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall; type 'O' or 'o'\nINPUT: "; // prompt for user input
+      cin >> userInComp;
+      cout << endl;
+      //Sort by CGPA
+      if ((userInComp == "c")||(userInComp == "C"))
+      {
+        Dbubblesort_CGPA(Dstudent, sizeD);
+        for(int k=0; k < sizeD; k++)
+        {
+          cout << Dstudent[k];
+        }
+      }
+      // Sort by research score
+      else if ((userInComp == "r")||(userInComp == "R"))
+      {
+        Dbubblesort_ResearchScore(Dstudent, sizeD);
+        for(int k=0; k < sizeD; k++)
+        {
+          cout << Dstudent[k];
+        }
+      }
+      // Sort by first name
+      else if ((userInComp == "f")||(userInComp == "F"))
+      {
+        Dbubblesort_FirstName(Dstudent, sizeD);
+        for(int k=0; k < sizeD; k++)
+        {
+          cout << Dstudent[k];
+        }
+      }
+      // Sort by last name
+      else if ((userInComp == "l")||(userInComp == "L"))
+      {
+        Dbubblesort_LastName(Dstudent, sizeD);
+        for(int k=0; k < sizeD; k++)
+        {
+          cout << Dstudent[k];
+        }
+      }
+      else if ((userInComp == "o")||(userInComp == "O"))
+      {
+        domesticOverallSort(Dstudent, sizeD);
+        for(int k=0; k < sizeD; k++)
+        {
+          cout << Dstudent[k];
+        }
+      }
+      else
+      {
+        cout << "INPUT ERROR\n";
+        goto tryagain1; // gateway #1 of loop for user input 2nd error
+      }
     }
-    // Sort by research score
-    else if ((userInComp == "r")||(userInComp == "R"))
+    else if ((userInStu == "i")||(userInStu == "I"))
     {
-
-    }
-    // Sort by first name
-    else if ((userInComp == "f")||(userInComp == "F"))
-    {
-    }
-    // Sort by last name
-    else if ((userInComp == "l")||(userInComp == "L"))
-    {
-
-    }
-    else if ((userInComp == "o")||(userInComp == "O"))
-    {
-
+      tryagain2: //gateway #2 of loop for user input 2nd error
+      cout << "Sort by:\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall; type 'O' or 'o'\nINPUT: ";
+      cin >> userInComp;
+      cout << endl;
+      // Sort by CGPA
+      if ((userInComp == "c")||(userInComp == "C"))
+      {
+        Ibubblesort_CGPA(Istudent, sizeI);
+        for(int k=0; k < sizeI; k++)
+        {
+          cout << Istudent[k];
+        }
+      }
+      // Sort by reseach score
+      else if ((userInComp == "r")||(userInComp == "R"))
+      {
+        Ibubblesort_ResearchScore(Istudent, sizeI);
+        for(int k=0; k < sizeI; k++)
+        {
+          cout << Istudent[k];
+        }
+      }
+      // Sort by first name
+      else if ((userInComp == "f")||(userInComp == "F"))
+      {
+        Ibubblesort_FirstName(Istudent, sizeI);
+        for(int k=0; k < sizeI; k++)
+        {
+          cout << Istudent[k];
+        }
+      }
+      // Sort by last name
+      else if ((userInComp == "l")||(userInComp == "L"))
+      {
+        Ibubblesort_LastName(Istudent, sizeI);
+        for(int k=0; k < sizeI; k++)
+        {
+          cout << Istudent[k];
+        }
+      }
+      else if ((userInComp == "o")||(userInComp == "O"))
+      {
+        internationalOverallSort(Istudent, sizeD);
+        for(int k=0; k < sizeD; k++)
+        {
+          cout << Istudent[k];
+        }
+      }
+      else
+      {
+        cout << "INPUT ERROR\n";
+        goto tryagain2; //gateway #2 of loop for user input 2nd error
+      }
     }
     else
     {
       cout << "INPUT ERROR\n";
-      goto tryagain1; // gateway #1 of loop for user input 2nd error
+      goto retry; //gateway of loop for user input error
     }
-  }
-  else if ((userInStu == "i")||(userInStu == "I"))
-  {
-    tryagain2: //gateway #2 of loop for user input 2nd error
-    cout << "Sort by:\nCGPA; type 'C' or 'c'\nResearch Score; type 'R' or 'r'\nFirst name; type 'F' or 'f'\nLast name; type 'L' or 'l'\nOverall; type 'O' or 'o'\nINPUT: ";
-    cin >> userInComp;
-    cout << endl;
-    // Sort by CGPA
-    if ((userInComp == "c")||(userInComp == "C"))
-    {
-
-    }
-    // Sort by reseach score
-    else if ((userInComp == "r")||(userInComp == "R"))
-    {
-
-    }
-    // Sort by first name
-    else if ((userInComp == "f")||(userInComp == "F"))
-    {
-
-    }
-    // Sort by last name
-    else if ((userInComp == "l")||(userInComp == "L"))
-    {
-
-    }
-    else if ((userInComp == "o")||(userInComp == "O"))
-    {
-
-    }
-    else
-    {
-      cout << "INPUT ERROR\n";
-      goto tryagain2; //gateway #2 of loop for user input 2nd error
-    }
-  }
-  else
-  {
-    cout << "INPUT ERROR\n";
-    goto retry; //gateway of loop for user input error
   }
   return 0;
 }
