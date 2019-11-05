@@ -373,8 +373,9 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
   {
     return;
   }
-	if(!head)//checks if the list is empty
+	if(!head)//checks if the list is empty how
 	{
+    cout << "la"<< endl;
 		head = newstudent;
     tail = newstudent;
 	}
