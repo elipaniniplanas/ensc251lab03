@@ -601,7 +601,6 @@ void sortCGPA(studentptr head, studentptr tail)
       head->setlink(temp->getlink());
       temp->setlink(head);
       }
-    }
     head = head->getlink();
   }
 }
