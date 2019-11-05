@@ -215,7 +215,7 @@ int main(){
         //Add new student
         if ((userInSub == "a")||(userInSub == "A"))
         {
-          insertD(Dhead, Dtail, &id);
+          insertD(Dhead, Dtail, &ID_count);
         }
         //Delete top and bottom
         else if ((userInSub == "d")||(userInSub == "D"))
@@ -356,7 +356,7 @@ int main(){
         //Add new student
         if ((userInSub == "a")||(userInSub == "A"))
         {
-          insertD(Ihead, Itail, &id);
+          insertD(Ihead, Itail, &ID_count);
         }
         //Delete top and bottom
         else if ((userInSub == "d")||(userInSub == "D"))
