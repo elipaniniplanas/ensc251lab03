@@ -573,13 +573,11 @@ tail = newtail;
 }
 void sortCGPA(studentptr head, studentptr tail)
 {
-  studentptr newhead;
-  studentptr newtail;
-  studentptr temp;
-  temp = head;
+  studentptr newhead = head;
+  studentptr newtail = tail;
+  studentptr temp = newhead;
   while(temp)
   {
-      temp = newhead;
       while ((compareCGPA(temp, head) == "greater") && (temp->getlink()))
       {
         temp = temp->getlink();
@@ -603,7 +601,7 @@ void sortCGPA(studentptr head, studentptr tail)
     head = head->getlink();
   }
   temp = head;
-  while(temp)
+  while(temp)//while temp is not null
   {
     temp->print();
     temp = temp->getlink();
