@@ -371,7 +371,6 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
   studentptr temp;
   if(newstudent->checkTOEFL())
   {
-    delete newstudent;
     return;
   }
 	if(!head)//checks if the list is empty
@@ -403,7 +402,6 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
     temp->setlink(newstudent);
     }
 	}
-  delete temp;
 }
 
 void search_ID(studentptr head, int id)
