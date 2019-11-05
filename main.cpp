@@ -56,7 +56,7 @@ int main(){
     cout <<"going to make a base to child"<<endl;
     studentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count, province);
     add_node(Dhead, Dtail, DtempPtr);
-    cout<<"did it "<< ID_count <<endl
+    cout<<"did it "<< ID_count<<endl;
 
     counter1++;
     Dstu_count++;
