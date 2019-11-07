@@ -52,7 +52,7 @@ int main(){
     // Set all data to a DomesticStudent node
     DomesticStudentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count, province);
     studentptr newstudent = DtempPtr;
-    add_node(Dhead&, Dtail&, newstudent&);
+    add_node(&Dhead, &Dtail, &newstudent);
     ID_count++;
   }
   domesticFile.close();
@@ -92,7 +92,7 @@ int main(){
     write = atoi(s_write.c_str());
     // Set all data to the Istudent object with mutator functions
     studentptr ItempPtr = new InternationalStudent(firstName, lastName, cgpa, researchScore, ID_count, country, read, write, listen, speak);
-    add_node(Ihead&, Itail&, ItempPtr&);
+    add_node(&Ihead, &Itail, &ItempPtr);
     //Generate a new ID and prepare to the next iteration of the loop
     counter2++;
     Istu_count++;
@@ -133,21 +133,21 @@ int main(){
         {
           cout << "Enter the CGPA to be searched for: ";
           cin >> gpa;
-          search_CGPA(Dhead&, gpa);
+          search_CGPA(&Dhead, gpa);
         }
         //Search by research score
         else if ((userInSub == "r")||(userInSub == "R"))
         {
           cout << "Enter the research score to be searched for: ";
           cin >> rscore;
-          search_score(Dhead&, rscore);
+          search_score(&Dhead, rscore);
         }
         //Search by ID
         else if ((userInSub == "i")||(userInSub == "I"))
         {
           cout << "Enter the ID to be searched for: ";
           cin >> eyedee;
-          search_ID(Dhead&, eyedee);
+          search_ID(&Dhead, eyedee);
         }
         // Search by name
         else if ((userInSub == "n")||(userInSub == "N"))
@@ -156,7 +156,7 @@ int main(){
           cin >> firstname;
           cout << "Enter the last name to be searched for: ";
           cin >> lastname;
-          search_name(Dhead&*, firstname, lastname);
+          search_name(&Dhead, firstname, lastname);
         }
         else
         {
@@ -174,27 +174,27 @@ int main(){
         //Sort by CGPA
         if ((userInSub == "c")||(userInSub == "C"))
         {
-          sortCGPA(Dhead&, Dtail&);
+          sortCGPA(&Dhead, &Dtail);
         }
         //Search by research score
         else if ((userInSub == "r")||(userInSub == "R"))
         {
-          sortResearchscore(Dhead&, Dtail&);
+          sortResearchscore(&Dhead, &Dtail);
         }
         // Sort by first name
         else if ((userInSub == "f")||(userInSub == "F"))
         {
-          sortFirstname(Dhead&, Dtail&);
+          sortFirstname(&Dhead, &Dtail);
         }
         // Sort by last name
         else if ((userInSub == "l")||(userInSub == "L"))
         {
-          sortLastname(Dhead&, Dtail&);
+          sortLastname(&Dhead, &Dtail);
         }
         // Sort by overall
         else if ((userInSub == "o")||(userInSub == "O"))
         {
-          sortOverall(Dhead&, Dtail&);
+          sortOverall(&Dhead, &Dtail);
         }
         else
         {
@@ -212,25 +212,25 @@ int main(){
         //Add new student
         if ((userInSub == "a")||(userInSub == "A"))
         {
-          insertD(Dhead&, Dtail&, ID_count);
+          insertD(&Dhead, &Dtail, ID_count);
           ID_count++;
         }
         //Delete top and bottom
         else if ((userInSub == "d")||(userInSub == "D"))
         {
-          delete_tips(Dhead&, Dtail&);
+          delete_tips(&Dhead, &Dtail);
         }
         //Delete name
         else if ((userInSub == "n")||(userInSub == "N"))
         {
-          delete_node(Dhead&, Dtail&, firstname, lastname);
+          delete_node(&Dhead, &Dtail, firstname, lastname);
         }
         //Merge lists
         else if ((userInSub == "m")||(userInSub == "M"))
         {
-          sortOverall(Dhead&, Dtail&);
-          sortOverall(Ihead&, Itail&);
-          merge(Dhead&, Ihead&, Itail&, Allhead&, AllTail&);
+          sortOverall(&Dhead, &Dtail);
+          sortOverall(&Ihead, &Itail);
+          merge(&Dhead, &Ihead, &Itail, &Allhead, &AllTail);
           cout << "Apply threshold? ('y','Y' = yes ; 'n','N' = no)\nINPUT: ";
           cin >> thresh;
           if((thresh == "y") || (thresh == "Y"))
@@ -239,7 +239,7 @@ int main(){
             cin >> rscore;
             cout << "Enter the CGPA\nINPUT: ";
             cin >> gpa;
-            threshold(Allhead&, gpa, rscore);
+            threshold(&Allhead, gpa, rscore);
           }
           cout << "Press anything to terminate the program\nINPUT: ";
           cin >> cont;
@@ -275,21 +275,21 @@ int main(){
         {
           cout << "Enter the CGPA to be searched for: ";
           cin >> gpa;
-          search_CGPA(Ihead&, gpa);
+          search_CGPA(&Ihead, gpa);
         }
         //Search by research score
         else if ((userInSub == "r")||(userInSub == "R"))
         {
           cout << "Enter the research score to be searched for: ";
           cin >> rscore;
-          search_score(Ihead&, rscore);
+          search_score(&Ihead, rscore);
         }
         //Search by ID
         else if ((userInSub == "i")||(userInSub == "I"))
         {
           cout << "Enter the ID to be searched for: ";
           cin >> eyedee;
-          search_ID(Ihead&, eyedee);
+          search_ID(&Ihead, eyedee);
         }
         // Search by first name
         else if ((userInSub == "n")||(userInSub == "N"))
@@ -298,7 +298,7 @@ int main(){
           cin >> firstname;
           cout << "Enter the last name to be searched for: ";
           cin >> lastname;
-          search_name(Ihead&, firstname, lastname);
+          search_name(&Ihead, firstname, lastname);
         }
         else
         {
@@ -316,27 +316,27 @@ int main(){
         //Sort by CGPA
         if ((userInSub == "c")||(userInSub == "C"))
         {
-          sortCGPA(Ihead&, Itail&);
+          sortCGPA(&Ihead, &Itail);
         }
         //Search by research score
         else if ((userInSub == "r")||(userInSub == "R"))
         {
-          sortResearchscore(Ihead&, Itail&);
+          sortResearchscore(&Ihead, &Itail);
         }
         // Sort by first name
         else if ((userInSub == "f")||(userInSub == "F"))
         {
-          sortFirstname(Ihead&, Itail&);
+          sortFirstname(&Ihead, &Itail);
         }
         // Sort by last name
         else if ((userInSub == "l")||(userInSub == "L"))
         {
-          sortLastname(Ihead&, Itail&);
+          sortLastname(&Ihead, &Itail);
         }
         // Sort by last name
         else if ((userInSub == "o")||(userInSub == "O"))
         {
-          sortOverall(Ihead&, Itail&);
+          sortOverall(&Ihead, &Itail);
         }
         else
         {
@@ -354,25 +354,25 @@ int main(){
         //Add new student
         if ((userInSub == "a")||(userInSub == "A"))
         {
-          insertI(Ihead&, Itail&, ID_count);
+          insertI(&Ihead, &Itail, ID_count);
           ID_count++;
         }
         //Delete top and bottom
         else if ((userInSub == "d")||(userInSub == "D"))
         {
-          delete_tips(Ihead&, Itail&);
+          delete_tips(&Ihead, &Itail);
         }
         //Delete name
         else if ((userInSub == "n")||(userInSub == "N"))
         {
-          delete_node(Ihead&, Itail&, firstname, lastname);
+          delete_node(&Ihead, &Itail, firstname, lastname);
         }
         //Merge lists
         else if ((userInSub == "m")||(userInSub == "M"))
         {
-          sortOverall(Dhead&, Dtail);
-          sortOverall(Ihead&, Itail);
-          merge(Dhead&, Ihead&, Itail&, Allhead&, AllTail&);
+          sortOverall(&Dhead, &Dtail);
+          sortOverall(&Ihead, &Itail);
+          merge(&Dhead, &Ihead, &Itail, &Allhead, &AllTail);
           cout << "Apply threshold? ('y','Y' = yes ; 'n','N' = no)\nINPUT: ";
           cin >> thresh;
           if((thresh == "y") || (thresh == "Y"))
@@ -381,7 +381,7 @@ int main(){
             cin >> rscore;
             cout << "Enter the CGPA\nINPUT: ";
             cin >> gpa;
-            threshold(Allhead&, gpa, rscore);
+            threshold(&Allhead, gpa, rscore);
           }
           cout << "Press anything to terminate the program\nINPUT: ";
           cin >> cont;
