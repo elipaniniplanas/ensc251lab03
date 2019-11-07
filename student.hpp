@@ -45,7 +45,7 @@ public:
   void setCGPA(float);
   void setscore(int);
   void setID(int);
-  void setlink(student*);
+  void setlink(student**);
   //Accessor functions
   string getfname() const;
   string getlname() const;
@@ -60,35 +60,35 @@ public:
   virtual bool checkTOEFL() const;
   virtual ~student();
   //friend functions
-  friend string compareCountry(student, student);
-  friend string compareProvince(student, student);
-  friend string compareReseachScore(student*, student*);
-  friend string compareCGPA(student*, student*);
-  friend string compareFirstName(student*, student*);
-  friend string compareLastName(student*, student*);
-  friend string compareOverall(student*, student*);
+  friend string compareCountry(student**, student**);
+  friend string compareProvince(student**, student**);
+  friend string compareReseachScore(student**, student**);
+  friend string compareCGPA(student**, student**);
+  friend string compareFirstName(student**, student**);
+  friend string compareLastName(student**, student**);
+  friend string compareOverall(student**, student**);
 
-  friend void add_node(student*, student*, student*);
-  friend void search_ID(student*, int);
-  friend void search_CGPA(student*, float);
-  friend void search_score(student*, int);
-  friend void search_name(student*, string, string);
-  friend void delete_node(student*, student*, string, string);
-  friend void delete_tips(student*, student*);
-  friend void insertD(student*, student*, int);
-  friend void insertI(student*, student*, int);
+  friend void add_node(student**, student**, student**);
+  friend void search_ID(student**, int);
+  friend void search_CGPA(student**, float);
+  friend void search_score(student**, int);
+  friend void search_name(student**, string, string);
+  friend void delete_node(student**, student**, string, string);
+  friend void delete_tips(student**, student**);
+  friend void insertD(student**, student**, int);
+  friend void insertI(student**, student**, int);
 
-  friend void sortResearchscore(student*, student*);
-  friend void sortCGPA(student*, student*);
-  friend void sortFirstname(student*, student*);
-  friend void sortLastname(student*, student*);
-  friend void sortOverall(student*, student*);
+  friend void sortResearchscore(student**, student**);
+  friend void sortCGPA(student**, student**);
+  friend void sortFirstname(student**, student**);
+  friend void sortLastname(student**, student**);
+  friend void sortOverall(student**, student**);
 
   /*The student in the parameter points to nullptr*/
 
-  friend void sortGPA(student*, student*);
-  friend void merge(student*, student*, student*, student*, student*);
-  friend void threshold(student*, float, int);
+  friend void sortGPA(student**, student**);
+  friend void merge(student**, student**, student**, student**, student**);
+  friend void threshold(student**, float, int);
 private:
         string fname;
         string lname;
@@ -148,6 +148,7 @@ public:
         //friend functions
         friend string compareCountry(InternationalStudent, InternationalStudent);
         friend ostream& operator<<(ostream& outs, const InternationalStudent& istu);
+
 
 private:
         string country;

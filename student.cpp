@@ -210,7 +210,7 @@ void student::setID(int id)
 {
         ID = id;
 }
-void student::setlink(student* chain)
+void student::setlink(studentptr chain)
 {
 	link = chain;
 }
@@ -235,7 +235,7 @@ int student::getID() const
 {
         return(ID);
 }
-student* student::getlink() const
+studentptr student::getlink() const
 {
 	return(link);
 }
@@ -267,7 +267,7 @@ string compareProvince(student left, student right)
   return "ERR";
 }
 //Comparing functions (friend functions)
-string compareResearchScore(studentptr left, studentptr right)
+string compareResearchScore(studentprt* left, studentprt* right)
 {
   if(left->getscore() < right->getscore())
   {
@@ -365,17 +365,16 @@ string compareOverall(studentptr left, studentptr right)//left is <greater/equal
   }
 }
 
-void add_node(studentptr head, studentptr tail, studentptr newstudent)
+void add_node(studentprt* head, studentprt* tail, studentprt* newstudent)
 {
   newstudent->print();
   studentptr temp;
-  if(newstudent->checkTOEFL())
+  if(newstudent->checkTOEFL())//checks if the newstudent has invalid toefl scores
   {
     return;
   }
 	if(!head)//checks if the list is empty how
 	{
-    cout << "la"<< endl;
 		head = newstudent;
     tail = newstudent;
 	}
@@ -405,7 +404,7 @@ void add_node(studentptr head, studentptr tail, studentptr newstudent)
 	}
 }
 
-void search_ID(studentptr head, int id)
+void search_ID(studentptr* head, int id)
 {
   bool found = false;
   studentptr searched;
@@ -424,7 +423,7 @@ void search_ID(studentptr head, int id)
     cout << "Can't find any student with this ID" << endl;
   }
 }
-void search_CGPA(studentptr head, float cgpa)
+void search_CGPA(studentprt* head, float cgpa)
 {
   if(head == NULL)
     {cout<<"yru tarded"<<endl;}
@@ -484,7 +483,7 @@ void search_name(studentptr head, string fn, string ln)
     cout << "Can't find any student with this name" << endl;
   }
 }
-void delete_node(studentptr head, studentptr tail, string fn, string ln)
+void delete_node(studentprt* head, studentprt* tail, string fn, string ln)
 {
   bool deleted = false;
   studentptr prior, searched;
@@ -513,7 +512,7 @@ void delete_node(studentptr head, studentptr tail, string fn, string ln)
     cout << "Can't find any student with this name" << endl;
   }
 }
-void delete_tips(studentptr head, studentptr tail)
+void delete_tips(studentprt* head, studentprt* tail)
 {
   if(!head)
   {
@@ -533,7 +532,7 @@ void delete_tips(studentptr head, studentptr tail)
     delete tempPtr;
   }
 }
-void sortResearchscore(studentptr head, studentptr tail)
+void sortResearchscore(studentprt* head, studentprt* tail)
 {
   studentptr newhead;
   studentptr newtail;
@@ -574,7 +573,7 @@ void sortResearchscore(studentptr head, studentptr tail)
 head = newhead;
 tail = newtail;
 }
-void sortCGPA(studentptr head, studentptr tail)
+void sortCGPA(studentprt* head, studentprt* tail)
 {
   studentptr newhead = head;
   studentptr newtail = tail;
@@ -610,7 +609,7 @@ void sortCGPA(studentptr head, studentptr tail)
     temp = temp->getlink();
   }
 }
-void sortFirstname(studentptr head, studentptr tail)
+void sortFirstname(studentprt* head, studentprt* tail)
 {
   studentptr newhead;
   studentptr newtail;
@@ -651,7 +650,7 @@ void sortFirstname(studentptr head, studentptr tail)
 head = newhead;
 tail = newtail;
 }
-void sortLastname(studentptr head, studentptr tail)
+void sortLastname(studentprt* head, studentprt* tail)
 {
   studentptr newhead;
   studentptr newtail;
@@ -692,7 +691,7 @@ void sortLastname(studentptr head, studentptr tail)
 head = newhead;
 tail = newtail;
 }
-void sortOverall(studentptr head, studentptr tail)
+void sortOverall(studentptr* head, studentptr* tail)
 {
   studentptr newhead;
   studentptr newtail;
@@ -733,7 +732,7 @@ void sortOverall(studentptr head, studentptr tail)
 head = newhead;
 tail = newtail;
 }
-void merge(studentptr domestic, studentptr internationalhead, studentptr internationaltail, studentptr mergedhead, studentptr mergedtail)
+void merge(studentptr* domestic, studentptr* internationalhead, studentptr* internationaltail, studentptr* mergedhead, studentptr* mergedtail)
 {
   studentptr insert = domestic;
   mergedhead = internationalhead;
@@ -744,7 +743,7 @@ void merge(studentptr domestic, studentptr internationalhead, studentptr interna
     insert = insert->getlink();
   }
 }
-void threshold(studentptr head, float cgpa, int score)
+void threshold(studentptr* head, float cgpa, int score)
 {
   bool found = false;
   studentptr searched;

@@ -32,10 +32,7 @@ int main(){
     return -1;
   }
   getline(domesticFile, line);//this skips the first line which is about the file format
-  int Dstu_count = 1;
   int ID_count = 20200000;
-  int counter1 = 0;
-  int counter2 = 0;
 
   while( getline(domesticFile, line) )
   {
@@ -53,13 +50,9 @@ int main(){
     getline(ss, s_researchScore, ',');
     researchScore = atoi(s_researchScore.c_str());
     // Set all data to a DomesticStudent node
-    cout <<"going to make a base to child"<<endl;
-    studentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count, province);
-    add_node(Dhead, Dtail, DtempPtr);
-    cout<<"did it "<< counter1 <<endl;
-
-    counter1++;
-    Dstu_count++;
+    DomesticStudentptr DtempPtr = new DomesticStudent(firstName, lastName, cgpa, researchScore, ID_count, province);
+    studentptr newstudent = DtempPtr;
+    add_node(Dhead, Dtail, newstudent);
     ID_count++;
   }
   domesticFile.close();
