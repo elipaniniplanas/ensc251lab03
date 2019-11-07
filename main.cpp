@@ -1,4 +1,4 @@
-/*
+AllHead/*
 	AUTHORS: ELI PLANAS AND CHENNY CAO
 	THIS CODE WAS COMPLETED ON OCT. 13, 2019
 
@@ -230,7 +230,7 @@ int main(){
         {
           sortOverall(&Dhead, &Dtail);
           sortOverall(&Ihead, &Itail);
-          merge(&Dhead, &Ihead, &Itail, &Allhead, &AllTail);
+          merge(&Dhead, &Ihead, &Itail, &AllHead, &AllTail);
           cout << "Apply threshold? ('y','Y' = yes ; 'n','N' = no)\nINPUT: ";
           cin >> thresh;
           if((thresh == "y") || (thresh == "Y"))
@@ -239,7 +239,7 @@ int main(){
             cin >> rscore;
             cout << "Enter the CGPA\nINPUT: ";
             cin >> gpa;
-            threshold(&Allhead, gpa, rscore);
+            threshold(&AllHead, gpa, rscore);
           }
           cout << "Press anything to terminate the program\nINPUT: ";
           cin >> cont;
@@ -372,7 +372,7 @@ int main(){
         {
           sortOverall(&Dhead, &Dtail);
           sortOverall(&Ihead, &Itail);
-          merge(&Dhead, &Ihead, &Itail, &Allhead, &AllTail);
+          merge(&Dhead, &Ihead, &Itail, &AllHead, &AllTail);
           cout << "Apply threshold? ('y','Y' = yes ; 'n','N' = no)\nINPUT: ";
           cin >> thresh;
           if((thresh == "y") || (thresh == "Y"))
@@ -381,7 +381,7 @@ int main(){
             cin >> rscore;
             cout << "Enter the CGPA\nINPUT: ";
             cin >> gpa;
-            threshold(&Allhead, gpa, rscore);
+            threshold(&AllHead, gpa, rscore);
           }
           cout << "Press anything to terminate the program\nINPUT: ";
           cin >> cont;
