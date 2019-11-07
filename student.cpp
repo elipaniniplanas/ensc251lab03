@@ -267,7 +267,7 @@ string compareProvince(student left, student right)
   return "ERR";
 }
 //Comparing functions (friend functions)
-string compareResearchScore(studentprt* left, studentprt* right)
+string compareResearchScore(studentptr* left, studentptr* right)
 {
   if(left->getscore() < right->getscore())
   {
@@ -365,7 +365,7 @@ string compareOverall(studentptr left, studentptr right)//left is <greater/equal
   }
 }
 
-void add_node(studentprt* head, studentprt* tail, studentprt* newstudent)
+void add_node(studentptr* head, studentptr* tail, studentptr* newstudent)
 {
   newstudent->print();
   studentptr temp;
@@ -423,7 +423,7 @@ void search_ID(studentptr* head, int id)
     cout << "Can't find any student with this ID" << endl;
   }
 }
-void search_CGPA(studentprt* head, float cgpa)
+void search_CGPA(studentptr* head, float cgpa)
 {
   if(head == NULL)
     {cout<<"yru tarded"<<endl;}
@@ -445,7 +445,7 @@ void search_CGPA(studentprt* head, float cgpa)
     cout << "Can't find any student with this CGPA" << endl;
   }
 }
-void search_score(studentptr head, int score)
+void search_score(studentptr* head, int score)
 {
   bool found = false;
   studentptr searched;
@@ -464,7 +464,7 @@ void search_score(studentptr head, int score)
     cout << "Can't find any student with this research score" << endl;
   }
 }
-void search_name(studentptr head, string fn, string ln)
+void search_name(studentptr* head, string fn, string ln)
 {
   bool found = false;
   studentptr searched; //initialize searched
@@ -483,7 +483,7 @@ void search_name(studentptr head, string fn, string ln)
     cout << "Can't find any student with this name" << endl;
   }
 }
-void delete_node(studentprt* head, studentprt* tail, string fn, string ln)
+void delete_node(studentptr* head, studentptr* tail, string fn, string ln)
 {
   bool deleted = false;
   studentptr prior, searched;
@@ -512,7 +512,7 @@ void delete_node(studentprt* head, studentprt* tail, string fn, string ln)
     cout << "Can't find any student with this name" << endl;
   }
 }
-void delete_tips(studentprt* head, studentprt* tail)
+void delete_tips(studentptr* head, studentptr* tail)
 {
   if(!head)
   {
@@ -532,7 +532,7 @@ void delete_tips(studentprt* head, studentprt* tail)
     delete tempPtr;
   }
 }
-void sortResearchscore(studentprt* head, studentprt* tail)
+void sortResearchscore(studentptr* head, studentptr* tail)
 {
   studentptr newhead;
   studentptr newtail;
@@ -573,7 +573,7 @@ void sortResearchscore(studentprt* head, studentprt* tail)
 head = newhead;
 tail = newtail;
 }
-void sortCGPA(studentprt* head, studentprt* tail)
+void sortCGPA(studentptr* head, studentptr* tail)
 {
   studentptr newhead = head;
   studentptr newtail = tail;
@@ -609,7 +609,7 @@ void sortCGPA(studentprt* head, studentprt* tail)
     temp = temp->getlink();
   }
 }
-void sortFirstname(studentprt* head, studentprt* tail)
+void sortFirstname(studentptr* head, studentptr* tail)
 {
   studentptr newhead;
   studentptr newtail;
@@ -650,7 +650,7 @@ void sortFirstname(studentprt* head, studentprt* tail)
 head = newhead;
 tail = newtail;
 }
-void sortLastname(studentprt* head, studentprt* tail)
+void sortLastname(studentptr* head, studentptr* tail)
 {
   studentptr newhead;
   studentptr newtail;
@@ -826,7 +826,7 @@ ostream& operator<<(ostream& outs, const DomesticStudent& dstu)
 	 << ", the assigned ID is " << dstu.getID() << endl;
    return(outs);
 }
-void insertD(studentptr head, studentptr tail, int id)
+void insertD(studentptr* head, studentptr* tail, int id)
 {
   string fn, ln, province;
   float cgpa;
@@ -949,7 +949,7 @@ void InternationalStudent::print()
 	 << this->gettotal() <<endl;
 }
 
-void insertI(studentptr head, studentptr tail, int id)
+void insertI(studentptr* head, studentptr* tail, int id)
 {
   string fn, ln, country;
   float cgpa;
