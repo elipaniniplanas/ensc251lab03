@@ -66,7 +66,6 @@ int main(){
   }
   getline(internationalFile, line);//this skips the first line which is about the file format
   //This is used to keep track of which student is being printed out and keeps track of how many international students there are
-  int Istu_count = 1;
   while( getline(internationalFile, line) )
   {
     istringstream ss(line);
@@ -94,8 +93,6 @@ int main(){
     studentptr ItempPtr = new InternationalStudent(firstName, lastName, cgpa, researchScore, ID_count, country, read, write, listen, speak);
     add_node(&Ihead, &Itail, &ItempPtr);
     //Generate a new ID and prepare to the next iteration of the loop
-    counter2++;
-    Istu_count++;
     ID_count++;
   }
   //close your file
